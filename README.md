@@ -5,3 +5,4 @@ Aryan Janolkar
 Nate Carman
 Brian Yang
 David Marsh
+Josh Taylor
