@@ -2,7 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import Test from './test.js'
+import express from 'express'
 import reportWebVitals from './reportWebVitals';
+
+const app = express();
+
+app.use('/test', Test);
+  
+app.listen(3000);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
