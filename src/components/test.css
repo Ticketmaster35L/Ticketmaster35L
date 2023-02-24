@@ -15,7 +15,7 @@
 
 .Test-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 82vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,8 +28,7 @@
   color: #61dafb;
 }
 
-@keyframes Test-logo-spin {
-  from {
+@keyframes Test-logo-spin {  from {
     transform: rotate(0deg);
   }
   to {
