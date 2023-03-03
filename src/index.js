@@ -13,12 +13,14 @@ import {
   Posts,
   Post,
   Test,
+  App,
 } from "./components";
 
 const container = document.getElementById("root")
 const root = createRoot(container)
 root.render(
   <Router>
+    <App />
     <Navigation />
     <Routes>
       <Route path="/" element={<Home />} />
