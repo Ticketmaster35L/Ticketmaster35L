@@ -5,8 +5,8 @@ This is a bug tracker/ticket master system
 1. Clone repository
 2. Run `npm install`
 3. Run 'npm install antd'
-4. Run 'npm run server' in seperate terminal, same folder
-4. Run `npm start`
+4. Run 'npm run server' in seperate terminal, same folder to start the backend
+4. Run `npm start` on a separate process to start the frontend
 ### Commit and Pull Request Rules
 1. No direct Commits to main
 2. Any potential pull request must first be tested with up to date main branch code-make sure to update!
