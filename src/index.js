@@ -14,13 +14,18 @@ import {
   Post,
   Test,
   App,
+  Login
 } from "./components";
 
+
+
+export default App;
 const container = document.getElementById("root")
 const root = createRoot(container)
 root.render(
   <Router>
     <App />
+    <Login/>
     <Navigation />
     <Routes>
       <Route path="/" element={<Home />} />
@@ -34,6 +39,7 @@ root.render(
     </Routes>
     <Footer />
   </Router>
+
 );
 
 serviceWorker.unregister();
