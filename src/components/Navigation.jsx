@@ -32,6 +32,11 @@ function Navigation() {
                   Blog
                 </NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/createpost">
+                  Create a Post
+                </NavLink>
+              </li>
             </ul>
           </div>
         </div>

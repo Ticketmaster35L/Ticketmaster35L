@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Form, Input } from 'antd';
 
 const userString = "NateCarman:P@ssword:Aryan03:AryanPass"
 

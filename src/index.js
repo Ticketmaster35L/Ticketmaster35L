@@ -14,7 +14,8 @@ import {
   Post,
   Test,
   App,
-  Login
+  Login,
+  CreatePost
 } from "./components";
 
 
@@ -35,6 +36,7 @@ root.render(
         <Route path="" element={<Posts />} />
         <Route path=":postSlug" element={<Post />} />
       </Route>
+      <Route path="/CreatePost" element={<CreatePost />} />
       <Route path="/test" element={<Test />} />
     </Routes>
     <Footer />
