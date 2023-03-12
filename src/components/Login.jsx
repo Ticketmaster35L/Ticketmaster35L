@@ -88,8 +88,8 @@ window.onload = function loadUserTree(){
   let username = ""
   let password = ""
   for(let i of userString){
-    if(i == ':'){
-      if(usr == false){
+    if(i === ':'){
+      if(usr === false){
         usr = true;
       }else{
         userTree.insert(username,password)
@@ -98,7 +98,7 @@ window.onload = function loadUserTree(){
         usr=false
       }
     }else{
-      if(usr == false){
+      if(usr === false){
         username+=i
       }
       else{
@@ -112,7 +112,7 @@ window.onload = function loadUserTree(){
 function Login() {
   const handleSubmission = (values) => {
     if(userTree.contains(values.username)){
-      if(userTree.find(values.username).pass == values.password){
+      if(userTree.find(values.username).pass === values.password){
         alert('This Account Exists')
       }else{
         alert('Your password is incorrect')
