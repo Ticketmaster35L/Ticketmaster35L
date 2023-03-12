@@ -24,3 +24,6 @@ yarn-error.log*
 
 # server data
 /data
+
+# package lock
+package-lock.json
