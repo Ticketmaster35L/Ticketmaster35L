@@ -34,7 +34,7 @@ function Navigation() {
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/createpost">
-                  Create a Post
+                  Create a Ticket
                 </NavLink>
               </li>
             </ul>
