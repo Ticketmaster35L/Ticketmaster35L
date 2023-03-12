@@ -9,7 +9,13 @@ function CreateTicket(){
     const processJSONString = (values) => {
         const ticket = {"name": values.bugname, status: values.bugstatus, creationDate: new Date(), assignedUser: "Test Admin"};
         let jsonString = JSON.stringify(ticket);
-        fetch('/api/create_ticket', { method: 'POST', body: jsonString })
+        fetch('/api/create_ticket', {
+                                    method: 'POST',
+                                    headers: {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json'
+                                    },
+                                    body: jsonString })
             .then((data) => alert(data.json()),
                   (err) => alert(err))
         alert(jsonString + "\nSent!")
