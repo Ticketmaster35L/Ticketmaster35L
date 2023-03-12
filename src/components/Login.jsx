@@ -91,8 +91,6 @@ window.onload = function loadUserTree(){
       if(usr == false){
         usr = true;
       }else{
-        alert(username)
-        alert(password)
         userTree.insert(username,password)
         username = ""
         password = ""
@@ -107,8 +105,6 @@ window.onload = function loadUserTree(){
       }
     }
   }
-  alert(username)
-  alert(password)
   userTree.insert(username,password)
 }
 
@@ -129,7 +125,6 @@ function Login() {
     
     alert(`The name you entered was: ${values.username}`);
     alert(`The password you entered was: ${values.password}`);
-    alert(userTree.root.user);
   }
   return(
     <div className="login">
