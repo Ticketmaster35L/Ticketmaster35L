@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Form, Input } from 'antd';
 
 const userString = "NateCarman:P@ssword:Aryan03:AryanPass"
 
@@ -27,6 +27,7 @@ class BinarySearchTree {
           return this
       }
       let current = this.root
+      /* eslint-disable no-constant-condition */
       while(true){
           if(user === current.user) return undefined
           if(user < current.user){
