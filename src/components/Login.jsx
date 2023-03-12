@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Form, Input } from 'antd';
 
 const userString = "NateCarman:P@ssword:Aryan03:AryanPass"
 
@@ -27,6 +27,7 @@ class BinarySearchTree {
           return this
       }
       let current = this.root
+      /* eslint-disable no-constant-condition */
       while(true){
           if(user === current.user) return undefined
           if(user < current.user){
@@ -91,8 +92,6 @@ window.onload = function loadUserTree(){
       if(usr == false){
         usr = true;
       }else{
-        alert(username)
-        alert(password)
         userTree.insert(username,password)
         username = ""
         password = ""
@@ -107,8 +106,6 @@ window.onload = function loadUserTree(){
       }
     }
   }
-  alert(username)
-  alert(password)
   userTree.insert(username,password)
 }
 
@@ -129,7 +126,6 @@ function Login() {
     
     alert(`The name you entered was: ${values.username}`);
     alert(`The password you entered was: ${values.password}`);
-    alert(userTree.root.user);
   }
   return(
     <div className="login">
