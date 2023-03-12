@@ -2,20 +2,25 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
 
+const database = require('./database.js')
+
 app.use(express.urlencoded());
+app.use(express.json())
 
 // This displays message that the server running and listening to specified port
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 // create a GET route
-app.get('/express_backend', (req, res) => {
-  res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
+app.get('/ticket/*', (req, res) => {
+  res.send(database.getTicket(req.url.substring(8)))
 });
 
-app.post('/test_endpoint', (req, res) => {
-  console.log(req.body)
+app.post('/ticket/*', (req, res) => {
+  database.updateTicket(req.url.substring(8), req.body)
+  res.send("Success")
 });
 
-app.get('/', (req, res) => {
-  res.send({ msg: 'yeah'})
-})
+app.post('/create_ticket', (req, res) => {
+  id = database.createTicket(req.body)
+  res.send({ id: id })
+});
