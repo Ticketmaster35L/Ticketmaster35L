@@ -27,6 +27,7 @@ class BinarySearchTree {
           return this
       }
       let current = this.root
+      /* eslint-disable no-constant-condition */
       while(true){
           if(user === current.user) return undefined
           if(user < current.user){
