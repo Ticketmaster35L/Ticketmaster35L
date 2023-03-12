@@ -24,6 +24,7 @@ function createTicket(data) {
 
     const path = './data/tickets.json'
 
+    id = generateId()
     try
     {
         initDatabase();
@@ -31,11 +32,10 @@ function createTicket(data) {
         text = fs.readFileSync(path)
         tickets = JSON.parse(text)
 
-        do 
+        while (id in tickets)
         {
             id = generateId()
         }
-        while (id in tickets)
 
         updateTicket(id, data);
     }
@@ -43,6 +43,8 @@ function createTicket(data) {
     {
         console.error(err)
     }
+
+    return id
 }
 
 function getTicket(id) {
