@@ -32,6 +32,11 @@ function Navigation() {
                   Blog
                 </NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink className='nav-link' to="/tickets">
+                  Tickets
+                </NavLink>
+              </li>
             </ul>
           </div>
         </div>
