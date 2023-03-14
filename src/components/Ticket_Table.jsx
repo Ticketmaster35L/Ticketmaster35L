@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Button, Checkbox, Form, Input, Table, Space, Tag } from 'antd';
+import createTicket from './CreateTicket';
 
 function Ticket_Table(){
     const columns = [
@@ -59,9 +60,10 @@ function Ticket_Table(){
     }
   }
 
-  testTicket = new ticketSubmission
+  //testTicket = new ticketSubmission
 
-  const [dataSource, setDataSource] = useState([
+
+  const dataSource = [
     {
       key: '1',
       title: 'test',
@@ -78,7 +80,7 @@ function Ticket_Table(){
       dueDate: '00/00'
       
     },
-  ]);
+  ]
   return(
     <div className='postTable'>
         <Form name="basic">

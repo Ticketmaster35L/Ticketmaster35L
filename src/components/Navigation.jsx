@@ -37,6 +37,11 @@ function Navigation() {
                   Create a Ticket
                 </NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/tickettable">
+                  Ticket Table
+                </NavLink>
+              </li>
             </ul>
           </div>
         </div>

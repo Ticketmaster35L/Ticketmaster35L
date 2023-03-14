@@ -9,5 +9,6 @@ export { default as Login } from "./Login"
 export { default as Posts } from "./blog/Posts";
 export { default as Post } from "./blog/Post";
 export { default as Test } from "./Test"
+export { default as TicketTable } from "./Ticket_Table"
 export { default as App } from "./App"
 

@@ -15,7 +15,8 @@ import {
   Test,
   App,
   Login,
-  CreatePost
+  CreatePost,
+  TicketTable
 } from "./components";
 
 
@@ -38,6 +39,7 @@ root.render(
       </Route>
       <Route path="/CreatePost" element={<CreatePost />} />
       <Route path="/test" element={<Test />} />
+      <Route path="/tickettable" element={<TicketTable />} />
     </Routes>
     <Footer />
   </Router>
