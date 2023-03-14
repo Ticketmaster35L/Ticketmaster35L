@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, Checkbox } from 'antd';
+import { useLocalStorage } from "./useLocalStorage";
 
 const userString = "NateCarman:P@ssword:Aryan03:AryanPass"
 
@@ -110,7 +111,20 @@ window.onload = function loadUserTree(){
 }
 
 function Login() {
+  const [id, setId] = useLocalStorage("userId", "");
   const handleSubmission = (values) => {
+    fetch('/api/' + (values.register ? "register" : "validate"), {
+                  method: 'POST',
+                  headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({name: values.name, email: values.email, password: values.password.split("").reverse().join("")}) })
+                  .then((data) => data.json().then((json) => setId(json.id)),
+                        (err) => alert(err))
+                  .catch((err) => console.error(err))
+    
+    /*
     if(userTree.contains(values.username)){
       if(userTree.find(values.username).pass === values.password){
         alert('This Account Exists')
@@ -126,22 +140,31 @@ function Login() {
     
     alert(`The name you entered was: ${values.username}`);
     alert(`The password you entered was: ${values.password}`);
+    */
   }
+
   return(
     <div className="login">
       <div class="container"></div>
-<Form name="basic" onFinish={handleSubmission}>
-  <Form.Item label="Username" name="username">
-    <Input/>
-  </Form.Item>
-  <Form.Item label="Password" name="password" >
-    <Input.Password/>
-  </Form.Item>
-  <Form.Item>
-  <Button type="primary" htmlType="submit">
-Submit</Button>
-  </Form.Item>
-</Form>
+        <Form name="basic" onFinish={handleSubmission}>
+          <Form.Item label="Name" name="name">
+            <Input/>
+          </Form.Item>
+          <Form.Item label="Email" name="email">
+            <Input/>
+          </Form.Item>
+          <Form.Item label="Password" name="password" >
+            <Input.Password/>
+          </Form.Item>
+          <Form.Item name="register" valuePropName="checked" >
+            <Checkbox>Register</Checkbox>
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
   </div>
   )
 }
