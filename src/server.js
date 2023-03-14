@@ -28,11 +28,11 @@ app.post('/create_ticket', (req, res) => {
 
 // User data
 app.get('/user/*', (req, res) => {
-  res.send(logindata.getUser(req.url.substring(8)))
+  res.send(logindata.getUser(req.url.substring(6)))
 });
 
 app.post('/user/*', (req, res) => {
-  logindata.updateUser(req.url.substring(8), req.body)
+  logindata.updateUser(req.url.substring(6), req.body)
   res.send("Success")
 });
 
@@ -46,18 +46,23 @@ const bcrypt = require('bcrypt');
 // POST route to register a user
 app.post('/register', (req, res) => {
   const saltRounds = 10
-  let { email, password } = req.body;
+  let { name, email, password } = req.body;
   password = password.split("").reverse().join("");
-  bcrypt.hash(password, saltRounds,
-      function(err, hashedPassword) {
-          if (err) {
-            console.error(err)
-          }
-          else {
-            logindata.createUser({email: email, password: hashedPassword})
-            res.send({ id: id });
-          }
-      });
+  const user = logindata.getUserByEmail(email)
+  if (user && !user.err)
+    res.status(500).send("Email already in database")
+  else {
+    bcrypt.hash(password, saltRounds,
+        function(err, hashedPassword) {
+            if (err) {
+              console.error(err)
+            }
+            else {
+              logindata.createUser({name: name, email: email, password: hashedPassword})
+              res.send({ id: id });
+            }
+        });
+    }
 });
 
 app.post('/validate', (req, res) => {

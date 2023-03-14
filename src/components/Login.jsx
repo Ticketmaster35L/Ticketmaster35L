@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Button, Form, Input, Checkbox } from 'antd';
+import { useLocalStorage } from "./useLocalStorage";
 
 const userString = "NateCarman:P@ssword:Aryan03:AryanPass"
 
@@ -110,6 +111,7 @@ window.onload = function loadUserTree(){
 }
 
 function Login() {
+  const [id, setId] = useLocalStorage("userId", "");
   const handleSubmission = (values) => {
     fetch('/api/' + (values.register ? "register" : "validate"), {
                   method: 'POST',
@@ -117,9 +119,10 @@ function Login() {
                   'Accept': 'application/json',
                   'Content-Type': 'application/json'
                   },
-                  body: JSON.stringify({email: values.email, password: values.password.split("").reverse().join("")}) })
-                  .then((data) => data.text().then((json) => alert(json)),
+                  body: JSON.stringify({name: values.name, email: values.email, password: values.password.split("").reverse().join("")}) })
+                  .then((data) => data.json().then((json) => setId(json.id)),
                         (err) => alert(err))
+                  .catch((err) => console.error(err))
     
     /*
     if(userTree.contains(values.username)){
@@ -144,6 +147,9 @@ function Login() {
     <div className="login">
       <div class="container"></div>
         <Form name="basic" onFinish={handleSubmission}>
+          <Form.Item label="Name" name="name">
+            <Input/>
+          </Form.Item>
           <Form.Item label="Email" name="email">
             <Input/>
           </Form.Item>

@@ -7,9 +7,10 @@ const Profile = () => {
 
   if (id !== "")
   {
+    console.log("GETTING ID")
     fetch('/api/user/' + id, {
       method: 'GET' })
-      .then((res) => setName(res.body.name || ""))
+      .then((res) => res.json().then((json) => {setName(json.name);console.log(json)}))
       .catch((err) => console.error(err))
   }
 
