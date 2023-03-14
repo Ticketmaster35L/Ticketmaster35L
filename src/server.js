@@ -45,36 +45,36 @@ const bcrypt = require('bcrypt');
 
 // POST route to register a user
 app.post('/register', (req, res) => {
-  const { email, password } = req.body;
-  password = password.reverse()
-  bcrypt.hash(username, saltRounds,
+  const saltRounds = 10
+  let { email, password } = req.body;
+  password = password.split("").reverse().join("");
+  bcrypt.hash(password, saltRounds,
       function(err, hashedPassword) {
           if (err) {
-              console.error(err)
+            console.error(err)
           }
           else {
-              password = hashedPassword;
+            logindata.createUser({email: email, password: hashedPassword})
+            res.send({ id: id });
           }
       });
-  logindata.createUser({email: email, password: password})
-  res.send({ id: id });
 });
 
-app.get('/validate', (req, res) => {
-  const { email, password } = req.body;
-  password = password.reverse()
+app.post('/validate', (req, res) => {
+  let { email, password } = req.body;
+  password = password.split("").reverse().join("");
   const user = logindata.getUserByEmail(email)
-  if (user)
+  if (user && !user.err)
   {
     bcrypt.compare(password, user.password, function(err, same) {
       if (err) {
-        res.status(501).send("Error comparing passwords: " + err)
+        res.status(500).send("Error comparing passwords: " + err)
         console.error(err);
       } else {
         if (same)
           res.send({ id: user.id });
         else
-          res.status(501).send("Invalid password for: " + email)
+          res.status(500).send("Invalid password for: " + email)
       }
     });
   }

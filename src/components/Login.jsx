@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, Checkbox } from 'antd';
 
 const userString = "NateCarman:P@ssword:Aryan03:AryanPass"
 
@@ -117,8 +117,8 @@ function Login() {
                   'Accept': 'application/json',
                   'Content-Type': 'application/json'
                   },
-                  body: JSON.stringify({email: values.email, password: values.password.reverse()}) })
-                  .then((data) => alert(data.body()),
+                  body: JSON.stringify({email: values.email, password: values.password.split("").reverse().join("")}) })
+                  .then((data) => data.text().then((json) => alert(json)),
                         (err) => alert(err))
     
     /*
@@ -150,8 +150,8 @@ function Login() {
           <Form.Item label="Password" name="password" >
             <Input.Password/>
           </Form.Item>
-          <Form.Item label="Register" name="register">
-            <Checkbox/>
+          <Form.Item name="register" valuePropName="checked" >
+            <Checkbox>Register</Checkbox>
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit">

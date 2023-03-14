@@ -82,8 +82,11 @@ function getUserByEmail(email) {
         text = fs.readFileSync(path)
         users = JSON.parse(text)
         for (user in users) {
-            if (user.email == email)
-                return user
+            if (users[user].email == email) {
+                const u = users[user]
+                u.id = user
+                return u
+            }
         }
         return {err: 'User not found'}
     }

@@ -39,7 +39,7 @@ function Navigation() {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/login" onClick={() => { console.log("waa")} }>
+                <NavLink className="nav-link" to="/login">
                   <Profile />
                 </NavLink>
               </li>
