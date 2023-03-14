@@ -59,9 +59,9 @@ function Ticket_Table(){
     }
   }
 
-  testTicket = new ticketSubmission
+  //testTicket = new ticketSubmission
 
-  const [dataSource, setDataSource] = useState([
+  const dataSource = [
     {
       key: '1',
       title: 'test',
@@ -78,7 +78,17 @@ function Ticket_Table(){
       dueDate: '00/00'
       
     },
-  ]);
+  ]
+
+  const addTicket=(ticket)=>{
+    const newTicket = {
+      title: ticket.ticket,
+
+    }
+    /*setDataSource(pre=>{
+      return [...pre, ]
+    })*/
+  }
   return(
     <div className='postTable'>
         <Form name="basic">
