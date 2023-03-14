@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Form, Input} from 'antd';
+import {ReactSession} from 'react-client-session';
 //import fetch from 'node-fetch';
 
 
@@ -7,7 +8,9 @@ import { Button, Form, Input} from 'antd';
 //FIXME: Implement the processJSON function
 function CreateTicket(){
     const processJSONString = (values) => {
-        const ticket = {"name": values.bugname, status: values.bugstatus, creationDate: new Date(), assignedUser: "Test Admin"};
+        let currentDate = new Date()
+        const creatorname = ReactSession.get("username");
+        const ticket = {"name": values.bugname, status: values.bugstatus, creationDate: currentDate, assignedUser: values.assignedperson, creator: creatorname, dueDate: values.duedate};
         let jsonString = JSON.stringify(ticket);
         fetch('/api/create_ticket', {
                                     method: 'POST',
@@ -38,6 +41,9 @@ function CreateTicket(){
                     <Input/>
                 </Form.Item>
                 <Form.Item label="Assigned Person" name="assignedperson" >
+                    <Input/>
+                </Form.Item>
+                <Form.Item label="Due Date" name="duedate">
                     <Input/>
                 </Form.Item>
                 <Form.Item>
