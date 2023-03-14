@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Button, Form, Input } from 'antd';
+import {ReactSession} from 'react-client-session';
 
 const userString = "NateCarman:P@ssword:Aryan03:AryanPass"
 
@@ -126,6 +127,8 @@ function Login() {
     
     alert(`The name you entered was: ${values.username}`);
     alert(`The password you entered was: ${values.password}`);
+    ReactSession.setStoreTyle("localStorage");
+    ReactSession.set("username", values.username);
   }
   return(
     <div className="login">

@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Form, Input} from 'antd';
+import {ReactSession} from 'react-client-session';
 //import fetch from 'node-fetch';
 
 
@@ -8,7 +9,8 @@ import { Button, Form, Input} from 'antd';
 function CreateTicket(){
     const processJSONString = (values) => {
         let currentDate = new Date()
-        const ticket = {"name": values.bugname, status: values.bugstatus, creationDate: currentDate, assignedUser: values.assignedperson};
+        const creatorname = ReactSession.get("username");
+        const ticket = {"name": values.bugname, status: values.bugstatus, creationDate: currentDate, assignedUser: values.assignedperson, creator: creatorname};
         let jsonString = JSON.stringify(ticket);
         fetch('/api/create_ticket', {
                                     method: 'POST',
