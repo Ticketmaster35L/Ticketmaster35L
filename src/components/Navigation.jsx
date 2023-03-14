@@ -33,8 +33,8 @@ function Navigation() {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className='nav-link' to="/tickets">
-                  Tickets
+                <NavLink className="nav-link" to="/createpost">
+                  Create a Ticket
                 </NavLink>
               </li>
             </ul>
