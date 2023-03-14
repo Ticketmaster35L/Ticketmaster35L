@@ -42,7 +42,8 @@ function CreateTicket(){
                 </Form.Item>
                 <Form.Item>
                     <Button type="primary" htmlType="submit">
-                    Submit</Button>
+                        Submit
+                    </Button>
                 </Form.Item>
             </Form>
         </div>

@@ -1,10 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { ReactSession } from 'react-session';
+import {default as Profile} from "./Profile"
 
 function Navigation() {
-  const username = "username";
-
   return (
     <div className="navigation">
       <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -41,8 +39,8 @@ function Navigation() {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/sign-in">
-                  User: {username}
+                <NavLink className="nav-link" to="/login" onClick={() => { console.log("waa")} }>
+                  <Profile />
                 </NavLink>
               </li>
             </ul>

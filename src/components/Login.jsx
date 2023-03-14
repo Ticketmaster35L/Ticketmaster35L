@@ -127,21 +127,23 @@ function Login() {
     alert(`The name you entered was: ${values.username}`);
     alert(`The password you entered was: ${values.password}`);
   }
+  
   return(
     <div className="login">
       <div class="container"></div>
-<Form name="basic" onFinish={handleSubmission}>
-  <Form.Item label="Username" name="username">
-    <Input/>
-  </Form.Item>
-  <Form.Item label="Password" name="password" >
-    <Input.Password/>
-  </Form.Item>
-  <Form.Item>
-  <Button type="primary" htmlType="submit">
-Submit</Button>
-  </Form.Item>
-</Form>
+        <Form name="basic" onFinish={handleSubmission}>
+          <Form.Item label="Username" name="username">
+            <Input/>
+          </Form.Item>
+          <Form.Item label="Password" name="password" >
+            <Input.Password/>
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
   </div>
   )
 }
