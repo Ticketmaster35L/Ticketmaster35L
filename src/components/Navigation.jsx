@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import {default as Profile} from "./Profile"
 
 function Navigation() {
   return (
@@ -33,8 +34,18 @@ function Navigation() {
                 </NavLink>
               </li>
               <li className="nav-item">
+<<<<<<< HEAD
                 <NavLink className="nav-link" to="/tickets">
                   Ticket Table
+=======
+                <NavLink className="nav-link" to="/createticket">
+                  Create a Ticket
+>>>>>>> 71ce5dee58b1b19e3e656554646d251c6b05ba2c
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/login">
+                  <Profile />
                 </NavLink>
               </li>
             </ul>
