@@ -70,6 +70,29 @@ function getUser(id) {
     }
 }
 
+function getUserByEmail(email) {
+    const fs = require('fs')
+
+    const path = './data/users.json'
+
+    try
+    {
+        initDatabase();
+        users = {}
+        text = fs.readFileSync(path)
+        users = JSON.parse(text)
+        for (user in users) {
+            if (user.email == email)
+                return user
+        }
+        return {err: 'User not found'}
+    }
+    catch(err)
+    {
+        console.error(err)
+    }
+}
+
 function updateUser(id, data) {
     const fs = require('fs')
 
@@ -116,6 +139,7 @@ function deleteUser(id) {
 module.exports = {
     createUser,
     getUser,
+    getUserByEmail,
     updateUser,
     deleteUser
 };

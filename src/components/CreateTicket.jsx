@@ -7,18 +7,17 @@ import { Button, Form, Input} from 'antd';
 //FIXME: Implement the processJSON function
 function CreateTicket(){
     const processJSONString = (values) => {
-        const ticket = {"name": values.bugname, status: values.bugstatus, creationDate: new Date(), assignedUser: "Test Admin"};
-        let jsonString = JSON.stringify(ticket);
+        const ticket = {"name": values.bugname, status: values.bugstatus, creationDate: new Date(), assignedUser: values.assignedperson};
         fetch('/api/create_ticket', {
                                     method: 'POST',
                                     headers: {
                                     'Accept': 'application/json',
                                     'Content-Type': 'application/json'
                                     },
-                                    body: jsonString })
+                                    body: JSON.stringify(ticket) })
             .then((data) => alert(data.json()),
                   (err) => alert(err))
-        alert(jsonString + "\nSent!")
+        alert(JSON.stringify(ticket) + "\nSent!")
 //console.log(ticket.name);
 
 //console.log(ticket.status);

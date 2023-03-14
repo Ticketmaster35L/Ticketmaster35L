@@ -111,6 +111,17 @@ window.onload = function loadUserTree(){
 
 function Login() {
   const handleSubmission = (values) => {
+    fetch('/api/' + (values.register ? "register" : "validate"), {
+                  method: 'POST',
+                  headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({email: values.email, password: values.password.reverse()}) })
+                  .then((data) => alert(data.body()),
+                        (err) => alert(err))
+    
+    /*
     if(userTree.contains(values.username)){
       if(userTree.find(values.username).pass === values.password){
         alert('This Account Exists')
@@ -126,17 +137,21 @@ function Login() {
     
     alert(`The name you entered was: ${values.username}`);
     alert(`The password you entered was: ${values.password}`);
+    */
   }
-  
+
   return(
     <div className="login">
       <div class="container"></div>
         <Form name="basic" onFinish={handleSubmission}>
-          <Form.Item label="Username" name="username">
+          <Form.Item label="Email" name="email">
             <Input/>
           </Form.Item>
           <Form.Item label="Password" name="password" >
             <Input.Password/>
+          </Form.Item>
+          <Form.Item label="Register" name="register">
+            <Checkbox/>
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit">
