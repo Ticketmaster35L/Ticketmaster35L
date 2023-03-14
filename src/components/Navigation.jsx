@@ -1,7 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { ReactSession } from 'react-session';
 
 function Navigation() {
+  const username = "username";
+
   return (
     <div className="navigation">
       <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -33,8 +36,13 @@ function Navigation() {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/createpost">
+                <NavLink className="nav-link" to="/createticket">
                   Create a Ticket
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/sign-in">
+                  User: {username}
                 </NavLink>
               </li>
             </ul>
