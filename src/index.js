@@ -14,8 +14,9 @@ import {
   Post,
   Test,
   Login,
-  Ticket_Table,
+  CreatePost,
   CreateTicket,
+  Ticket_Table,
 } from "./components";
 
 
@@ -35,7 +36,7 @@ root.render(
       </Route>
       <Route path="/createticket" element={<CreateTicket />} />
       <Route path="/test" element={<Test />} />
-      <Route path="/login" element={<Login />} />
+     <Route path="/login" element={<Login />} /> 
     </Routes>
     <Footer />
   </Router>
