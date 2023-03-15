@@ -1,12 +1,15 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 5000;
 
 const database = require('./database.js')
 const logindata = require('./logindata.js')
 
-app.use(express.urlencoded());
-app.use(express.json())
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.json())
 
 // This displays message that the server running and listening to specified port
 app.listen(port, () => console.log(`Listening on port ${port}`));

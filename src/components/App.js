@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import {
   Navigation,
   Footer,
@@ -12,6 +12,7 @@ import {
   Post,
   Test,
   Login,
+  Register,
   CreateTicket
 } from "../components";
 
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/createticket" element={<CreateTicket />} />
           <Route path="/test" element={<Test />} />
           <Route path="/login" element={<Login setId={setId}/>} />
+          <Route path="/register" element={<Register setId={setId}/>} />
         </Routes>
         <Footer />
       </div>
