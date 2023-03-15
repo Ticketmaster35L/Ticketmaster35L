@@ -58,7 +58,7 @@ function Ticket_Table(){
   const addTicket=(ticket)=>{
     
     const JSONTicket = JSON.stringify(ticket)
-    alert(JSONTicket)
+    //alert(JSONTicket)
     const jsonList = JSON.parse(JSONTicket)
     //alert(jsonList.status)
     const newTicket = {
