@@ -93,7 +93,7 @@ function Ticket_Table(){
   return(
     <div>
     <div>
-    <NavLink className="nav-link" to="/createpost">
+    <NavLink className="nav-link" to="/createticket">
                   Create a Ticket
                 </NavLink>
     </div>
