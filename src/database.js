@@ -112,10 +112,18 @@ function deleteTicket(id) {
     }
 }
 
+//Ticket Table Load
+function getAllTickets(){
+    
+}
+
+
 
 module.exports = {
     createTicket,
     getTicket,
     updateTicket,
-    deleteTicket
+    deleteTicket,
+    getAllTickets,
 };
+

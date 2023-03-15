@@ -45,10 +45,10 @@ function CreateTicket(){
                         Submit
                     </Button>
                 </Form.Item>
-                <NavLink className="nav-link" to="/tickets">
+            </Form>
+            <NavLink className="nav-link" to="/tickets">
                   Go Back
                 </NavLink>
-            </Form>
         </div>
     )
 }

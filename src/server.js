@@ -31,6 +31,10 @@ app.get('/user/*', (req, res) => {
   res.send(logindata.getUser(req.url.substring(6)))
 });
 
+app.get('/DoesThisWork', (req,res) => {
+  res.send('Yes')
+})
+
 app.post('/user/*', (req, res) => {
   logindata.updateUser(req.url.substring(6), req.body)
   res.send("Success")

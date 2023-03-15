@@ -14,12 +14,8 @@ import {
   Post,
   Test,
   Login,
-<<<<<<< HEAD
-  CreatePost,
-  Ticket_Table
-=======
-  CreateTicket
->>>>>>> 71ce5dee58b1b19e3e656554646d251c6b05ba2c
+  Ticket_Table,
+  CreateTicket,
 } from "./components";
 
 

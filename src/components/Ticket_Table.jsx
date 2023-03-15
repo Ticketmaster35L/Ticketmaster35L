@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { Button, Checkbox, Form, Input, Table, Space, Tag } from 'antd';
 import { NavLink } from "react-router-dom";
+import {useState} from 'react'
 
 function Ticket_Table(){
     const columns = [
@@ -90,10 +91,25 @@ function Ticket_Table(){
       return [...pre, ]
     })*/
   }
+
+  window.onload = function getAllTickets(){
+    fetch('/api/get_tickets', {
+      method: "GET",
+      mode: 'cors',
+    })
+    .then(function(response) {
+      return response.blob();
+  }).then(function(response) {
+      alert(response.json())
+  });
+  }
+
+  
+
   return(
     <div>
     <div>
-    <NavLink className="nav-link" to="/createpost">
+    <NavLink className="nav-link" to="/createticket">
                   Create a Ticket
                 </NavLink>
     </div>
