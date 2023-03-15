@@ -13,6 +13,7 @@ import {
   Test,
   Login,
   Register,
+  Profile,
   CreateTicket
 } from "../components";
 
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="/test" element={<Test />} />
           <Route path="/login" element={<Login setId={setId}/>} />
           <Route path="/register" element={<Register setId={setId}/>} />
+          <Route path="/profile" element={<Profile id={id} setId={setId}/>} />
         </Routes>
         <Footer />
       </div>

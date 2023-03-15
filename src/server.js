@@ -35,7 +35,22 @@ app.get('/user/*', (req, res) => {
 });
 
 app.post('/user/*', (req, res) => {
-  logindata.updateUser(req.url.substring(6), req.body)
+  if (password in req.body) {
+    const saltRounds = 10
+    req.body.password = req.body.password.split("").reverse().join("");
+    bcrypt.hash(password, saltRounds,
+        function(err, hashedPassword) {
+            if (err) {
+              console.error(err)
+            }
+            else {
+              logindata.updateUser(req.url.substring(6), { ...req.body, password: hashedPassword})
+            }
+        });
+  }
+  else {
+    logindata.updateUser(req.url.substring(6), req.body)
+  }
   res.send("Success")
 });
 

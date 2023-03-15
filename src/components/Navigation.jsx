@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import {default as Profile} from "./Profile"
+import {default as Username} from "./Username"
 
 function Navigation(props) {
   return (
@@ -39,8 +39,8 @@ function Navigation(props) {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/login">
-                  <Profile id={props.id}/>
+                <NavLink className="nav-link" to={props.id ? "/profile" : "/login"}>
+                  <Username id={props.id}/>
                 </NavLink>
               </li>
             </ul>

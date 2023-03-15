@@ -17,7 +17,7 @@ function Login(props) {
                   .then((data) => data.text().then((text) => {
                     let json = {}
                     try {
-                      JSON.parse(text)
+                      json = JSON.parse(text)
                     } catch { }
                     if (json.id)
                     {
@@ -29,25 +29,25 @@ function Login(props) {
                     else if (json.err)
                     {
                       document.getElementById('errmsg').innerText = json.err
-                      console.error(json.err)
+                      console.error('json.err: ' + json.err)
                     }
                     else
                     {
                       document.getElementById('errmsg').innerText = text
-                      console.error(text)
+                      console.error('text: ' + text)
+                      console.error('json: ' + json)
                     }
                   }),
                         (err) => alert(err))
                   .catch((err) => {
                     document.getElementById('errmsg').innerText = err
-                    console.error(err)
+                    console.error('catch: ' + err)
                   })
   }
 
   return(
     <div className="login">
       <div class="container"></div>
-        <div id='errmsg'></div>
         <Form name="basic" onFinish={handleSubmission}>
           <Form.Item label="Email" name="email">
             <Input/>
@@ -55,6 +55,7 @@ function Login(props) {
           <Form.Item label="Password" name="password" >
             <Input.Password/>
           </Form.Item>
+          <div id='errmsg'></div>
           <Form.Item>
             <Button type="primary" htmlType="submit">
               Submit

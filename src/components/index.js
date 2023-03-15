@@ -7,6 +7,7 @@ export { default as Blog } from "./blog/Blog";
 export { default as CreateTicket } from "./CreateTicket";
 export { default as Login } from "./Login"
 export { default as Register } from "./Register"
+export { default as Profile } from "./Profile"
 export { default as Posts } from "./blog/Posts";
 export { default as Post } from "./blog/Post";
 export { default as Test } from "./Test"
