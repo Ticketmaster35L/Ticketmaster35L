@@ -40,7 +40,7 @@ function Navigation(props) {
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to={props.id ? "/profile" : "/login"}>
-                  <Username id={props.id}/>
+                  <b><Username id={props.id}/></b>
                 </NavLink>
               </li>
             </ul>

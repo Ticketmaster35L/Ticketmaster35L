@@ -35,10 +35,10 @@ app.get('/user/*', (req, res) => {
 });
 
 app.post('/user/*', (req, res) => {
-  if (password in req.body) {
+  if (req.body.password) {
     const saltRounds = 10
     req.body.password = req.body.password.split("").reverse().join("");
-    bcrypt.hash(password, saltRounds,
+    bcrypt.hash(req.body.password, saltRounds,
         function(err, hashedPassword) {
             if (err) {
               console.error(err)
@@ -51,7 +51,7 @@ app.post('/user/*', (req, res) => {
   else {
     logindata.updateUser(req.url.substring(6), req.body)
   }
-  res.send("Success")
+  res.send({ id: req.url.substring(6) })
 });
 
 app.post('/create_user', (req, res) => {

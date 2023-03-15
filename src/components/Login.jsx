@@ -47,7 +47,7 @@ function Login(props) {
 
   return(
     <div className="login">
-      <div class="container"></div>
+      <div className="container"></div>
         <Form name="basic" onFinish={handleSubmission}>
           <Form.Item label="Email" name="email">
             <Input/>

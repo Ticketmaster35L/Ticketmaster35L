@@ -47,7 +47,7 @@ function Register(props) {
 
   return(
     <div className="register">
-      <div class="container"></div>
+      <div className="container"></div>
         <Form name="basic" onFinish={handleSubmission}>
           <Form.Item label="Name" name="name">
             <Input/>

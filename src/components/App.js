@@ -18,7 +18,7 @@ import {
 } from "../components";
 
 const App = () => {
-  const [id, setId] = useState(localStorage.getItem("userId"))
+  const [id, setId] = useState(JSON.parse(localStorage.getItem("userId")))
 
   return (
       <div className="App">

@@ -3,9 +3,7 @@ import React, { useState } from 'react';
 const Username = (props) => {
   const [name, setName] = useState("")
 
-  if (props.id !== "")
-  {
-    console.log("GETTING props.id: " + props.id)
+  if (props.id && props.id !== "") {
     fetch('/api/user/' + props.id, {
       method: 'GET' })
       .then((res) => res.text().then((text) => {
@@ -16,7 +14,6 @@ const Username = (props) => {
         if (json.id)
         {
           setName(json.name)
-          console.log(json)
         }
         else if (json.err)
         {
@@ -30,6 +27,9 @@ const Username = (props) => {
       }),
         (err) => alert(err))
       .catch((err) => console.error('catch: ' + err))
+  } else {
+    if (name)
+      setName(null)
   }
 
   return (
