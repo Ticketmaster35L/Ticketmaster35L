@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
-import { Button, Form, Input, Checkbox } from 'antd';
-import { useLocalStorage } from "./useLocalStorage";
+import { Button, Form, Input, Checkbox } from 'antd'
+import { useNavigate } from 'react-router-dom'
 
+/*
 const userString = "NateCarman:P@ssword:Aryan03:AryanPass"
 
 class Node{
@@ -28,7 +29,7 @@ class BinarySearchTree {
           return this
       }
       let current = this.root
-      /* eslint-disable no-constant-condition */
+      // eslint-disable no-constant-condition 
       while(true){
           if(user === current.user) return undefined
           if(user < current.user){
@@ -110,8 +111,11 @@ window.onload = function loadUserTree(){
   userTree.insert(username,password)
 }
 
-function Login() {
-  const [id, setId] = useLocalStorage("userId", "");
+*/
+
+function Login(props) {
+  const navigate = useNavigate()
+
   const handleSubmission = (values) => {
     fetch('/api/' + (values.register ? "register" : "validate"), {
                   method: 'POST',
@@ -120,9 +124,25 @@ function Login() {
                   'Content-Type': 'application/json'
                   },
                   body: JSON.stringify({name: values.name, email: values.email, password: values.password.split("").reverse().join("")}) })
-                  .then((data) => data.json().then((json) => setId(json.id)),
+                  .then((data) => data.json().then((json) => {
+                    if (json.id)
+                    {
+                      localStorage.setItem("userId", JSON.stringify(json.id));
+                      console.log(props)
+                      props.setId(json.id)
+                      navigate('/')
+                    }
+                    else
+                    {
+                      document.getElementById('errmsg').innerText = json.err
+                      console.error(json.err)
+                    }
+                  }),
                         (err) => alert(err))
-                  .catch((err) => console.error(err))
+                  .catch((err) => {
+                    document.getElementById('errmsg').innerText = err
+                    console.error(err)
+                  })
     
     /*
     if(userTree.contains(values.username)){
@@ -146,6 +166,7 @@ function Login() {
   return(
     <div className="login">
       <div class="container"></div>
+        <div id='errmsg'></div>
         <Form name="basic" onFinish={handleSubmission}>
           <Form.Item label="Name" name="name">
             <Input/>

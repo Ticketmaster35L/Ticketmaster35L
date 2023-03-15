@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import { useLocalStorage } from "./useLocalStorage";
 
-const Profile = () => {
-  const [id, setId] = useLocalStorage("userId", "");
+const Profile = (props) => {
   const [name, setName] = useState("")
 
-  if (id !== "")
+  if (props.id !== "")
   {
-    console.log("GETTING ID")
-    fetch('/api/user/' + id, {
+    console.log("GETTING props.id: " + props.id)
+    fetch('/api/user/' + props.id, {
       method: 'GET' })
       .then((res) => res.json().then((json) => {setName(json.name);console.log(json)}))
       .catch((err) => console.error(err))

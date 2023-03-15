@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import {default as Profile} from "./Profile"
 
-function Navigation() {
+function Navigation(props) {
   return (
     <div className="navigation">
       <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -40,7 +40,7 @@ function Navigation() {
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/login">
-                  <Profile />
+                  <Profile id={props.id}/>
                 </NavLink>
               </li>
             </ul>
