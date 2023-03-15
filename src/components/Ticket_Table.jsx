@@ -7,15 +7,15 @@ import {useState} from 'react'
 function Ticket_Table(){
     const columns = [
     {
-      title: 'Title',
-      dataIndex: 'title',
-      key: 'title',
-      render: (text) => <a>{text}</a>,
+      title: 'TicketName',
+      dataIndex: 'ticketName',
+      key: 'ticketName',
     },
     {
-      title: 'Ticket',
-      dataIndex: 'ticket',
-      key: 'ticket',
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+      render: (text) => <a>{text}</a>,
     },
     {
       title: 'Assigned to:',
@@ -23,12 +23,12 @@ function Ticket_Table(){
       key: 'assigned',
     },
     {
-      title: 'Tags',
-      key: 'tags',
-      dataIndex: 'tags',
-      render: (_, { tags }) => (
+      title: 'Language',
+      key: 'language',
+      dataIndex: 'language',
+      render: (_, { language }) => (
       <>
-        {tags.map((tag) => {
+        {language.map((tag) => {
           let color = tag.length > 5 ? 'geekblue' : 'green';
           if (tag === 'loser') {
             color = 'volcano';
@@ -49,49 +49,38 @@ function Ticket_Table(){
     },
   ];
 
-
-  class ticketSubmission{
-    constructor(title,ticket,tags,dueDate,description){
-      this.title = title
-      this.ticket = ticket
-      this.tags = tags
-      this.dueDate = dueDate
-      this.description = description
-      this.subDate = new Date()
-    }
-  }
-
   //testTicket = new ticketSubmission
 
-  const dataSource = [
-    {
-      key: '1',
-      title: 'test',
-      ticket: '(this is where the tickets would go)',
-      tags: ['Blah Blah Blah'],
-      dueDate: '00/00'
-      
-    },
-    {
-      key: '2',
-      title: 'test',
-      ticket: '(this is where the tickets would go',
-      tags: ['Blah Blah Blah'],
-      dueDate: '00/00'
-      
-    },
-  ]
+  const [dataSource, setDataSource] = useState([
+    
+  ])
 
   const addTicket=(ticket)=>{
+    
+    const JSONTicket = JSON.stringify(ticket)
+    alert(JSONTicket)
+    const jsonList = JSON.parse(JSONTicket)
+    //alert(jsonList.status)
+    const newTicket = {
+      key: '3',
+      status: "jsonList.name",
+      ticketName: jsonList.name,
+      language: ["JavaScript"],
+      assigned: jsonList.assignedUser,
+      dueDate: '3/15'
+    }
+    setDataSource(pre =>{
+      return [...pre, newTicket]
+    })
     /*You can do your work here nate! */
-    console.log(ticket)
+    //console.log(ticket)
     /*setDataSource(pre=>{
       return [...pre, ]
     })*/
   }
 
   window.onload = function getAllTickets(){
-    alert("Running")
+    //alert("Running")
     fetch('/api/all_tickets').then((response) => response.json())
     .then((data)=> {
       /*I'll let you figure out how to handle this, but data here is a dictionairy with every id of the ticket
