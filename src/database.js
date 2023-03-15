@@ -114,7 +114,22 @@ function deleteTicket(id) {
 
 //Ticket Table Load
 function getAllTickets(){
-    
+    const fs = require('fs')
+
+    const path = './data/tickets.json'
+
+    try
+    {
+        initDatabase();
+        tickets = {}
+        text = fs.readFileSync(path)
+        tickets = JSON.parse(text)
+        return tickets
+    }
+    catch(err)
+    {
+        console.error(err)
+    }
 }
 
 

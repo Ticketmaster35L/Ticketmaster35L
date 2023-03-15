@@ -15,10 +15,15 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 app.get('/ticket/*', (req, res) => {
   res.send(database.getTicket(req.url.substring(8)))
 });
+/*Another Get route for all tickets*/
+app.get('/all_tickets', (req,res) => {
+  res.send(database.getAllTickets())
+    /*database.getAllTickets()*/
+});
 
 app.post('/ticket/*', (req, res) => {
   database.updateTicket(req.url.substring(8), req.body)
-  res.send("Success")
+  res.send("Success") 
 });
 
 app.post('/create_ticket', (req, res) => {

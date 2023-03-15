@@ -83,25 +83,33 @@ function Ticket_Table(){
   ]
 
   const addTicket=(ticket)=>{
-    const newTicket = {
-      title: ticket.ticket,
-
-    }
+    /*You can do your work here nate! */
+    console.log(ticket)
     /*setDataSource(pre=>{
       return [...pre, ]
     })*/
   }
 
   window.onload = function getAllTickets(){
-    fetch('/api/get_tickets', {
-      method: "GET",
-      mode: 'cors',
+    alert("Running")
+    fetch('/api/all_tickets').then((response) => response.json())
+    .then((data)=> {
+      /*I'll let you figure out how to handle this, but data here is a dictionairy with every id of the ticket
+      as keys and the ticket object as values.Proccess and add to the table as you need!*/
+      for (let ticket in data){
+
+        addTicket(data[ticket])
+      }
     })
-    .then(function(response) {
+    .catch((error) => {
+    alert(error);
+  });
+
+   /* .then(function(response) {
       return response.blob();
   }).then(function(response) {
       alert(response.json())
-  });
+  });*/
   }
 
   
