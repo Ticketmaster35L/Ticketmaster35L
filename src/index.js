@@ -13,21 +13,16 @@ import {
   Posts,
   Post,
   Test,
-  App,
   Login,
   CreatePost,
   Ticket_Table
 } from "./components";
 
 
-
-export default App;
 const container = document.getElementById("root")
 const root = createRoot(container)
 root.render(
   <Router>
-    <App />
-    <Login/>
     <Navigation />
     <Routes>
       <Route path="/" element={<Home />} />
@@ -38,8 +33,9 @@ root.render(
         <Route path="" element={<Posts />} />
         <Route path=":postSlug" element={<Post />} />
       </Route>
-      <Route path="/CreatePost" element={<CreatePost />} />
+      <Route path="/createticket" element={<CreateTicket />} />
       <Route path="/test" element={<Test />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
     <Footer />
   </Router>
