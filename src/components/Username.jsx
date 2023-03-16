@@ -4,6 +4,7 @@ const Username = (props) => {
   const [name, setName] = useState("")
 
   if (props.id && props.id !== "") {
+    console.log("FETCHING!!!")
     fetch('/api/user/' + props.id, {
       method: 'GET' })
       .then((res) => res.text().then((text) => {

@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import { Button, Checkbox, Form, Input, Table, Space, Tag } from 'antd';
+import { Form, Table, Tag } from 'antd';
 import { NavLink } from "react-router-dom";
 import {useState} from 'react'
 
-function Ticket_Table(){
+function Ticket_Table() {
     const columns = [
     {
       title: 'TicketName',
@@ -15,7 +15,7 @@ function Ticket_Table(){
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
-      render: (text) => <a>{text}</a>,
+      render: (text) => <p>{text}</p>,
     },
     {
       title: 'Assigned to:',
