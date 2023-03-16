@@ -2,9 +2,14 @@
 function initDatabase() {
     const fs = require('fs')
 
-    const path = './data/tickets.json'
+    const dir = './data'
+    const path = dir + '/tickets.json'
     
     const defaultVal = { }
+
+    if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir, { recursive: true });
+    }
 
     if (!fs.existsSync(path)) {
         fs.writeFileSync(path, JSON.stringify(defaultVal), (err) => {
@@ -82,7 +87,7 @@ function updateTicket(id, data) {
         tickets = {}
         text = fs.readFileSync(path)
         tickets = JSON.parse(text)
-        tickets[id] = data
+        tickets[id] = { ...tickets[id], ...data }
         fs.writeFileSync(path, JSON.stringify(tickets))
     }
     catch(err)

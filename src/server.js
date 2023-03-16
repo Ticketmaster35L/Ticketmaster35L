@@ -1,12 +1,15 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 5000;
 
 const database = require('./database.js')
 const logindata = require('./logindata.js')
 
-app.use(express.urlencoded());
-app.use(express.json())
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.json())
 
 // This displays message that the server running and listening to specified port
 app.listen(port, () => console.log(`Listening on port ${port}`));
@@ -36,8 +39,23 @@ app.get('/user/*', (req, res) => {
 });
 
 app.post('/user/*', (req, res) => {
-  logindata.updateUser(req.url.substring(6), req.body)
-  res.send("Success")
+  if (req.body.password) {
+    const saltRounds = 10
+    req.body.password = req.body.password.split("").reverse().join("");
+    bcrypt.hash(req.body.password, saltRounds,
+        function(err, hashedPassword) {
+            if (err) {
+              console.error(err)
+            }
+            else {
+              logindata.updateUser(req.url.substring(6), { ...req.body, password: hashedPassword})
+            }
+        });
+  }
+  else {
+    logindata.updateUser(req.url.substring(6), req.body)
+  }
+  res.send({ id: req.url.substring(6) })
 });
 
 app.post('/create_user', (req, res) => {
