@@ -34,7 +34,7 @@ function Navigation(props) {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/tickets">
+                <NavLink className="nav-link" to="/table">
                   Ticket Table
                 </NavLink>
               </li>

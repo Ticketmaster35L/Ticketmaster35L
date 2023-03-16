@@ -117,7 +117,6 @@ function deleteTicket(id) {
     }
 }
 
-//Ticket Table Load
 function getAllTickets(){
     const fs = require('fs')
 
@@ -129,7 +128,11 @@ function getAllTickets(){
         tickets = {}
         text = fs.readFileSync(path)
         tickets = JSON.parse(text)
-        return tickets
+        array = []
+        for (ticket in tickets) {
+            array.push({ ...tickets[ticket], key: ticket })
+        }
+        return array
     }
     catch(err)
     {
@@ -142,8 +145,8 @@ function getAllTickets(){
 module.exports = {
     createTicket,
     getTicket,
+    getAllTickets,
     updateTicket,
     deleteTicket,
-    getAllTickets,
 };
 
