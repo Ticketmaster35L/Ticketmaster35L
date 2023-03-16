@@ -96,7 +96,6 @@ function CreateTicket(props) {
                 </Form.Item>
                 <Form.Item label="Description" name="description">
                     <TextArea rows={4} placeholder="Description" />
-                    <Input placeholder="Assigned Person" />
                 </Form.Item>
                 <Form.Item>
                     <Button type="primary" htmlType="submit">
