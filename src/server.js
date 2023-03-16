@@ -43,14 +43,14 @@ app.post('/user/*', (req, res) => {
     const saltRounds = 10
     req.body.password = req.body.password.split("").reverse().join("");
     bcrypt.hash(req.body.password, saltRounds,
-        function(err, hashedPassword) {
-            if (err) {
-              console.error(err)
-            }
-            else {
-              logindata.updateUser(req.url.substring(6), { ...req.body, password: hashedPassword})
-            }
-        });
+      function (err, hashedPassword) {
+        if (err) {
+          console.error(err)
+        }
+        else {
+          logindata.updateUser(req.url.substring(6), { ...req.body, password: hashedPassword })
+        }
+      });
   }
   else {
     logindata.updateUser(req.url.substring(6), req.body)
@@ -79,25 +79,24 @@ app.post('/register', (req, res) => {
     res.status(500).send("Email already in database")
   else {
     bcrypt.hash(password, saltRounds,
-        function(err, hashedPassword) {
-            if (err) {
-              console.error(err)
-            }
-            else {
-              logindata.createUser({name: name, email: email, password: hashedPassword})
-              res.send({ id: id });
-            }
-        });
-    }
+      function (err, hashedPassword) {
+        if (err) {
+          console.error(err)
+        }
+        else {
+          logindata.createUser({ name: name, email: email, password: hashedPassword })
+          res.send({ id: id });
+        }
+      });
+  }
 });
 
 app.post('/validate', (req, res) => {
   let { email, password } = req.body;
   password = password.split("").reverse().join("");
   const user = logindata.getUserByEmail(email)
-  if (user && !user.err)
-  {
-    bcrypt.compare(password, user.password, function(err, same) {
+  if (user && !user.err) {
+    bcrypt.compare(password, user.password, function (err, same) {
       if (err) {
         res.status(500).send("Error comparing passwords: " + err)
         console.error(err);
