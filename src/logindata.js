@@ -2,9 +2,14 @@
 function initDatabase() {
     const fs = require('fs')
 
-    const path = './data/users.json'
+    const dir = './data'
+    const path = dir + '/users.json'
     
     const defaultVal = { }
+
+    if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir, { recursive: true });
+    }
 
     if (!fs.existsSync(path)) {
         fs.writeFileSync(path, JSON.stringify(defaultVal), (err) => {
@@ -59,7 +64,7 @@ function getUser(id) {
         text = fs.readFileSync(path)
         users = JSON.parse(text)
         if (id in users)
-            return users[id]
+            return { ...users[id], id: id}
         else
             return {err: 'User not found'}
 
@@ -83,9 +88,7 @@ function getUserByEmail(email) {
         users = JSON.parse(text)
         for (user in users) {
             if (users[user].email == email) {
-                const u = users[user]
-                u.id = user
-                return u
+                return { ...users[user], id: user}
             }
         }
         return {err: 'User not found'}
@@ -108,7 +111,7 @@ function updateUser(id, data) {
         users = {}
         text = fs.readFileSync(path)
         users = JSON.parse(text)
-        users[id] = data
+        users[id] = { ...users[id], ...data }
         fs.writeFileSync(path, JSON.stringify(users))
     }
     catch(err)
