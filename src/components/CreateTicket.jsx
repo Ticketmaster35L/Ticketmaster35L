@@ -31,9 +31,6 @@ function CreateTicket(props) {
                 <Form.Item label="Ticket Name" name="bugname">
                     <Input placeholder="Ticket Name" />
                 </Form.Item>
-                <Form.Item label="Ticket Name" name="bugname">
-                    <Input placeholder="Ticket Name" />
-                </Form.Item>
                 <Form.Item label="Assigned Person" name="assignedperson" >
                     <Input placeholder="Assigned Person" />
                 </Form.Item>
