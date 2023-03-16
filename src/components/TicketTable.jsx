@@ -12,7 +12,6 @@ function TicketTable() {
       .then((data)=> {
         /*I'll let you figure out how to handle this, but data here is a dictionairy with every id of the ticket
         as keys and the ticket object as values.Proccess and add to the table as you need!*/
-        console.log(data.tickets)
         setDataSource(data.tickets)
         setFetched(true)
       })
