@@ -20,7 +20,7 @@ app.get('/ticket/*', (req, res) => {
 });
 
 app.get('/all_tickets', (req, res) => {
-  res.send(database.getAllTickets())
+  res.send({ tickets: database.getAllTickets() })
 })
 
 app.post('/ticket/*', (req, res) => {

@@ -15,7 +15,7 @@ import {
   Register,
   Profile,
   CreateTicket,
-  Ticket_Table,
+  TicketTable,
 } from "../components";
 
 const App = () => {
@@ -31,10 +31,11 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />}>
 
+
             <Route path="" element={<Posts />} />
             <Route path=":postSlug" element={<Post />} />
           </Route>
-          <Route path="/Ticket_Table" element={<Ticket_Table />} />
+          <Route path="/table" element={<TicketTable />} />
           <Route path="/createticket" element={<CreateTicket />} />
           <Route path="/test" element={<Test />} />
           <Route path="/login" element={<Login setId={setId}/>} />
