@@ -22,6 +22,7 @@ function Login(props) {
                     if (json.id)
                     {
                       localStorage.setItem("userId", JSON.stringify(json.id));
+                      console.log(props)
                       props.setId(json.id)
                       navigate('/')
                     }
@@ -44,18 +45,14 @@ function Login(props) {
                   })
   }
 
-  return (
+  return(
     <div className="login">
       <div className="container"></div>
         <Form name="basic" onFinish={handleSubmission}>
-          <Form.Item label="Email"
-                      name="email"
-                      rules={[{ required: true, message: 'Please input your email!' }]}>
-            <Input />
+          <Form.Item label="Email" name="email">
+            <Input/>
           </Form.Item>
-          <Form.Item label="Password"
-                      name="password"
-                      rules={[{ required: true, message: 'Please input your password!' }]}>
+          <Form.Item label="Password" name="password" >
             <Input.Password/>
           </Form.Item>
           <div id='errmsg'></div>

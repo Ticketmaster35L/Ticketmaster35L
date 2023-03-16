@@ -19,7 +19,7 @@ app.get('/ticket/*', (req, res) => {
   res.send(database.getTicket(req.url.substring(8)))
 });
 
-app.get('/all_tickets', (req, res) => {
+app.get('/all_tickets', (req,res) => {
   res.send(database.getAllTickets())
 })
 

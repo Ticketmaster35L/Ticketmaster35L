@@ -20,7 +20,6 @@ import {
 
 const App = () => {
   const [id, setId] = useState(JSON.parse(localStorage.getItem("userId")))
-  const [, updateState] = useState({})
 
   return (
       <div className="App">
@@ -39,7 +38,7 @@ const App = () => {
           <Route path="/test" element={<Test />} />
           <Route path="/login" element={<Login setId={setId}/>} />
           <Route path="/register" element={<Register setId={setId}/>} />
-          <Route path="/profile" element={<Profile id={id} setId={setId} updateState={updateState}/>} />
+          <Route path="/profile" element={<Profile id={id} setId={setId}/>} />
         </Routes>
         <Footer />
       </div>
