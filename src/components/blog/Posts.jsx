@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Posts() {
-  let x = "ThisWorks"
   return (
     <div className="home">
       <div class="container">
