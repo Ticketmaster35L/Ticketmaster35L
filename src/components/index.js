@@ -13,4 +13,5 @@ export { default as Post } from "./blog/Post";
 export { default as Test } from "./Test";
 export { default as App } from "./App";
 export { default as Ticket_Table} from "./Ticket_Table";
+export { default as DisplayTicket } from "./DisplayTicket";
 
