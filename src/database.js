@@ -129,7 +129,11 @@ function getAllTickets(){
         tickets = {}
         text = fs.readFileSync(path)
         tickets = JSON.parse(text)
-        return tickets
+        array = []
+        for (ticket in tickets) {
+            array.push({ ...tickets[ticket], key: ticket })
+        }
+        return array
     }
     catch(err)
     {
