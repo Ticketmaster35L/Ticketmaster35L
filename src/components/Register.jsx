@@ -22,7 +22,6 @@ function Register(props) {
                     if (json.id)
                     {
                       localStorage.setItem("userId", JSON.stringify(json.id));
-                      console.log(props)
                       props.setId(json.id)
                       navigate('/')
                     }

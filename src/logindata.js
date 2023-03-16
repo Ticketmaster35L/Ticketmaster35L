@@ -111,7 +111,7 @@ function updateUser(id, data) {
         users = {}
         text = fs.readFileSync(path)
         users = JSON.parse(text)
-        users[id] = { ...users[id], data }
+        users[id] = { ...users[id], ...data }
         fs.writeFileSync(path, JSON.stringify(users))
     }
     catch(err)

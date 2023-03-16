@@ -87,7 +87,7 @@ function updateTicket(id, data) {
         tickets = {}
         text = fs.readFileSync(path)
         tickets = JSON.parse(text)
-        tickets[id] = { ...tickets[id], data }
+        tickets[id] = { ...tickets[id], ...data }
         fs.writeFileSync(path, JSON.stringify(tickets))
     }
     catch(err)
