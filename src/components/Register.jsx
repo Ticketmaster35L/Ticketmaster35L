@@ -48,13 +48,19 @@ function Register(props) {
     <div className="register">
       <div className="container"></div>
         <Form name="basic" onFinish={handleSubmission}>
-          <Form.Item label="Name" name="name">
-            <Input/>
-          </Form.Item>
-          <Form.Item label="Email" name="email">
-            <Input/>
-          </Form.Item>
-          <Form.Item label="Password" name="password" >
+              <Form.Item label="Name"
+                          name="name"
+                          rules={[{ required: true, message: 'Please input your name!' }]}>
+                <Input />
+              </Form.Item>
+              <Form.Item label="Email"
+                          name="email"
+                          rules={[{ required: true, message: 'Please input your email!' }]}>
+                <Input />
+              </Form.Item>
+          <Form.Item label="Password"
+                      name="password"
+                      rules={[{ required: true, message: 'Please input your password!' }]}>
             <Input.Password/>
           </Form.Item>
           <div id='errmsg'></div>

@@ -142,8 +142,8 @@ function getAllTickets(){
 module.exports = {
     createTicket,
     getTicket,
+    getAllTickets,
     updateTicket,
     deleteTicket,
-    getAllTickets,
 };
 
