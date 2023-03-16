@@ -1,16 +1,20 @@
 import React from "react";
-import { Row, Col } from 'antd';
+import { Row, Col, Card, Table } from 'antd';
 
 const DisplayTicket = () => {
     return (
         <>
-        <p>
-            TestPrint
-        </p>
-        <Row gutter={[48,48]}>
-            <Col span={12}>Col1</Col>
-            <Col span={12}>Col2</Col>
-            <Col span={12}>Col3</Col>
+        <Row gutter={[480,480]}>
+            <Col span={600}>
+                <Card title="Ticket Data">
+                    <Table>
+                        <Table.Column title="Bug Name" dataIndex ="bugName" key="bugName" />
+                        <Table.Column title="Bug Status" dataIndex ="bugStatus" key="bugStatus" />
+                        <Table.Column title="Creation Date" dataIndex ="creationDate" key="creationDate" />
+                        <Table.Column title="Assigned Person" dataIndex ="assignedPerson" key="assignedPerson" />
+                    </Table>
+                </Card>    
+            </Col>
         </Row>
         </>
     )
