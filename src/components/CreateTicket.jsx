@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, Form, Input} from 'antd';
+import { Button, Form, Input, Select, Space} from 'antd';
+import { NavLink } from "react-router-dom";
 //import fetch from 'node-fetch';
 
 
@@ -45,6 +46,9 @@ function CreateTicket(){
                     </Button>
                 </Form.Item>
             </Form>
+            <NavLink className="nav-link" to="/tickets">
+                  Go Back
+                </NavLink>
         </div>
     )
 }
