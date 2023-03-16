@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Form, Input, Select, DatePicker } from 'antd';
 import { NavLink } from "react-router-dom";
 
@@ -6,6 +6,22 @@ const { TextArea } = Input;
 
 //FIXME: Implement the processJSON function
 function CreateTicket(props) {
+    const [userList, setUserList] = useState([])
+    const [fetched, setFetched] = useState(false)
+  
+    if (!fetched) {
+      fetch('/api/all_users').then((response) => response.json())
+        .then((data)=> {
+          /*I'll let you figure out how to handle this, but data here is a dictionairy with every id of the ticket
+          as keys and the ticket object as values.Proccess and add to the table as you need!*/
+          setUserList(data.users)
+          setFetched(true)
+        })
+        .catch((error) => {
+          alert(error);
+        })
+    }
+
     const processJSONString = (values) => {
         if (values.assignedperson == null || values.bugname == null || values.bugstatus == null || values.date == null || values.description == null || values.language == null) {
             alert("Please complete all fields before submission")
