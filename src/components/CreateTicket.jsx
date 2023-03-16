@@ -31,11 +31,22 @@ function CreateTicket(props) {
                 <Form.Item label="Ticket Name" name="bugname">
                     <Input placeholder="Ticket Name" />
                 </Form.Item>
-                <Form.Item label="Ticket Name" name="bugname">
-                    <Input placeholder="Ticket Name" />
-                </Form.Item>
                 <Form.Item label="Assigned Person" name="assignedperson" >
-                    <Input placeholder="Assigned Person" />
+                    <Select
+                        showSearch
+                        style={{
+                            width: 200,
+                        }}
+                        placeholder="Search to Select"
+                        optionFilterProp="children"
+                        filterOption={(input, option) => (option?.label ?? '').includes(input)}
+                        filterSort={(optionA, optionB) =>
+                            (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                        }
+                        options={[
+                            
+                        ]}
+                    />
                 </Form.Item>
                 <Form.Item label="Language" name="language">
                     <Select
@@ -99,7 +110,6 @@ function CreateTicket(props) {
                 </Form.Item>
                 <Form.Item label="Description" name="description">
                     <TextArea rows={4} placeholder="Description" />
-                    <Input placeholder="Assigned Person" />
                 </Form.Item>
                 <Form.Item>
                     <Button type="primary" htmlType="submit">
