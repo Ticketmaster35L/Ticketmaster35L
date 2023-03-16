@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './App.css';
 import { Form, Table, Tag } from 'antd';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function TicketTable() {
   const [dataSource, setDataSource] = useState([])
   const [fetched, setFetched] = useState(false)
+  const navigate = useNavigate()
 
   if (!fetched) {
     fetch('/api/all_tickets').then((response) => response.json())
@@ -53,6 +54,11 @@ function TicketTable() {
       title: 'Due Date (MM/DD)',
       dataIndex: 'dueDate',
       sorter: (a, b) => a.dueDate - b.dueDate,
+      render: (_, { dueDate }) => (
+      <>
+        {new Date(dueDate).toDateString()}
+      </>
+      ),
     },
   ];
 
@@ -65,7 +71,18 @@ function TicketTable() {
       </div>
       <div className='postTable'>
         <Form name="basic">
-          <Table dataSource={dataSource} columns={columns}/>
+          <Table
+            dataSource={dataSource}
+            columns={columns}
+            onRow={(record, rowIndex) => {
+              return {
+                onClick: (event) => {navigate("/ticket/" + record.key)}, // click row
+                onDoubleClick: (event) => {}, // double click row
+                onContextMenu: (event) => {}, // right button click row
+                onMouseEnter: (event) => {}, // mouse enter row
+                onMouseLeave: (event) => {}, // mouse leave row
+              };
+            }}/>
         </Form>
       </div>
     </div>
