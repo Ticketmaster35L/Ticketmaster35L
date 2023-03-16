@@ -60,14 +60,14 @@ function Ticket_Table() {
     const JSONTicket = JSON.stringify(ticket)
     //alert(JSONTicket)
     const jsonList = JSON.parse(JSONTicket)
-    //alert(jsonList.status)
+    //alert(jsonList.languages)
     const newTicket = {
       key: '3',
-      status: "jsonList.name",
+      status: jsonList.status,
       ticketName: jsonList.name,
-      language: ["JavaScript"],
+      language: [jsonList.languages],
       assigned: jsonList.assignedUser,
-      dueDate: '3/15'
+      dueDate: jsonList.dueDate
     }
     setDataSource(pre =>{
       return [...pre, newTicket]
