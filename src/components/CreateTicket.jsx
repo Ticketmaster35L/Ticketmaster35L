@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Form, Input, Select, DatePicker } from 'antd';
 import { NavLink } from "react-router-dom";
 
@@ -6,6 +6,37 @@ const { TextArea } = Input;
 
 //FIXME: Implement the processJSON function
 function CreateTicket(props) {
+    const [userList, setUserList] = useState([])
+    const [fetched, setFetched] = useState(false)
+  
+    if (!fetched) {
+      fetch('/api/all_users').then((response) => response.text())
+        .then((text) => {
+            console.log(text)
+            const obj = JSON.parse(text, function(k, v) {
+                if (k === "key") {
+                    this.value = v;
+                    return; // if return  undefined, orignal property will be removed
+                } else if (k === "name") {
+                    this.label = v;
+                    return;
+                }
+                return v;
+            });
+            console.log(obj)
+            return obj
+        })
+        .then((data)=> {
+          /*I'll let you figure out how to handle this, but data here is a dictionairy with every id of the ticket
+          as keys and the ticket object as values.Proccess and add to the table as you need!*/
+          setUserList(data.users)
+          setFetched(true)
+        })
+        .catch((error) => {
+          alert(error);
+        })
+    }
+
     const processJSONString = (values) => {
         if (values.assignedperson == null || values.bugname == null || values.bugstatus == null || values.date == null || values.description == null || values.language == null) {
             alert("Please complete all fields before submission")
@@ -26,17 +57,29 @@ function CreateTicket(props) {
     }
     return (
         <div className="ticketCreator">
-            <div class="container"></div>
+            <div className="container"></div>
             <Form name="TicketFields" onFinish={processJSONString}>
                 <Form.Item label="Ticket Name" name="bugname">
                     <Input placeholder="Ticket Name" />
                 </Form.Item>
                 <Form.Item label="Assigned Person" name="assignedperson" >
-                    <Input placeholder="Assigned Person" />
+                    <Select
+                        showSearch
+                        style={{
+                            width: 200,
+                        }}
+                        placeholder="Search to Select"
+                        optionFilterProp="children"
+                        filterOption={(input, option) => (option?.label.toLowerCase() ?? '').includes(input?.toLowerCase())}
+                        filterSort={(optionA, optionB) =>
+                            (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                        }
+                        options={userList}
+                    />
                 </Form.Item>
                 <Form.Item label="Language" name="language">
                     <Select
-                        defaultValue="Pick Language"
+                        placeholder="Pick Language"
                         style={{
                             width: 120,
                         }}
@@ -70,7 +113,7 @@ function CreateTicket(props) {
                 </Form.Item>
                 <Form.Item label="Ticket Status" name="bugstatus" >
                     <Select
-                        defaultValue="Choose Status"
+                        placeholder="Choose Status"
                         style={{
                             width: 120,
                         }}
