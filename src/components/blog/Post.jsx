@@ -7,7 +7,9 @@ import { Descriptions, Radio } from 'antd';
 function Post() {
   
   let { postSlug } = useParams();
-  const [ticket, setTicket] = useState([{}])
+  const [ticket_name, setTicket_name] = useState("")
+  const [ticket_status, setTicket_status] = useState("")
+  const [ticket_creationDate, setTicket_creationDate] = useState("")
 
   useEffect(() => {
     // Fetch post using the postSlug
@@ -15,29 +17,43 @@ function Post() {
     fetch('/api/ticket/'+postSlug).then((response) => response.json())
     .then((ticket)=> {
       console.log(ticket)
-      setTicket(ticket)
+      setTicket_name(ticket.name)
+      setTicket_status(ticket.status)
+      setTicket_creationDate(ticket.creationDate)
+      console.log(ticket_name) 
+
     })
 
   }, [postSlug]);
   const handleTicketChange = (index,event) => {
-    let data = ticket;
+    let data = {
+      //EVERY FIELD MUST BE IN HERE
+      name:ticket_name,
+      status:ticket_status,
+      assignedUser:"",
+      creationDate:ticket_creationDate,
+      dueDate:"",
+      description:"",
+      language:""
+    };
     data[index] = event.target.value;
-    setTicket(data);
+    //SET EVERY TICKET FIELD'S STATE HERE
+    setTicket_name(data.name)
+    setTicket_status(data.status)
+    //console.log(ticket_status)
     fetch('/api/ticket/'+postSlug,{
       method: "POST",
-      body: JSON.stringify(ticket),
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
     }
-    ).then((response) => response.json()).then((data) => console.log(data))
-    console.log(ticket.name)
+    ).then((response) => JSON.stringify(response))
+
     //alert(event.target.value)
   }
   const { TextArea } = Input;
-
-  const input_field = {
-    border : 0,
-    width: '100%',
-    height:"100%"
-  };
   return (
     
     <div className="home">
@@ -45,8 +61,8 @@ function Post() {
         <div className="ticketDescriptor">
             <div class="container"></div>
             <Descriptions title="Ticket Info" bordered>
-            <Descriptions.Item label="Ticket Name"><input style={input_field} type="text" defaultValue={ticket.name} onChange={event => handleTicketChange("name",event)}/></Descriptions.Item>
-            <Descriptions.Item label="Ticket Status"><Input value={ticket.status} bordered={false}/></Descriptions.Item>
+            <Descriptions.Item label="Ticket Name"><Input name="ticket_name" type="text" value={ticket_name} onChange={event => handleTicketChange("name",event)} bordered={false} /></Descriptions.Item>
+            <Descriptions.Item label="Ticket Status"><Input name="ticket_status" type="text" value={ticket_status} onChange={event => handleTicketChange("status",event)} bordered={false}/></Descriptions.Item>
             </Descriptions>
             <Form name="Comments">
                     <Form.Item label="Insert a comment here" name="commentForm">
