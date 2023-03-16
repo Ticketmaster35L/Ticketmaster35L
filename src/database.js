@@ -117,7 +117,6 @@ function deleteTicket(id) {
     }
 }
 
-//Ticket Table Load
 function getAllTickets(){
     const fs = require('fs')
 

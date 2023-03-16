@@ -141,10 +141,34 @@ function deleteUser(id) {
     }
 }
 
+function getAllUsers(){
+    const fs = require('fs')
+
+    const path = './data/users.json'
+
+    try
+    {
+        initDatabase();
+        users = {}
+        text = fs.readFileSync(path)
+        users = JSON.parse(text)
+        array = []
+        for (user in users) {
+            array.push({ ...users[user], key: user })
+        }
+        return array
+    }
+    catch(err)
+    {
+        console.error(err)
+    }
+}
+
 
 module.exports = {
     createUser,
     getUser,
+    getAllUsers,
     getUserByEmail,
     updateUser,
     deleteUser

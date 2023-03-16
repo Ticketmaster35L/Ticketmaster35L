@@ -19,14 +19,14 @@ app.get('/ticket/*', (req, res) => {
   res.send(database.getTicket(req.url.substring(8)))
 });
 
-app.get('/all_tickets', (req, res) => {
-  res.send({ tickets: database.getAllTickets() })
-})
-
 app.post('/ticket/*', (req, res) => {
   database.updateTicket(req.url.substring(8), req.body)
   res.send("Success")
 });
+
+app.get('/all_tickets', (req, res) => {
+  res.send({ tickets: database.getAllTickets() })
+})
 
 app.post('/create_ticket', (req, res) => {
   id = database.createTicket(req.body)
@@ -57,6 +57,10 @@ app.post('/user/*', (req, res) => {
   }
   res.send({ id: req.url.substring(6) })
 });
+
+app.get('/all_users', (req, res) => {
+  res.send({ users: logindata.getAllUsers() })
+})
 
 app.post('/create_user', (req, res) => {
   id = logindata.createUser(req.body)
