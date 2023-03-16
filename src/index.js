@@ -14,7 +14,9 @@ import {
   Post,
   Test,
   Login,
-  CreateTicket
+  CreatePost,
+  CreateTicket,
+  Ticket_Table,
 } from "./components";
 
 
@@ -27,13 +29,14 @@ root.render(
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/tickets" element={<Ticket_Table />} />
       <Route path="/blog" element={<Blog />}>
         <Route path="" element={<Posts />} />
         <Route path=":postSlug" element={<Post />} />
       </Route>
       <Route path="/createticket" element={<CreateTicket />} />
       <Route path="/test" element={<Test />} />
-      <Route path="/login" element={<Login />} />
+     <Route path="/login" element={<Login />} /> 
     </Routes>
     <Footer />
   </Router>

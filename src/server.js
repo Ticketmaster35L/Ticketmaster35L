@@ -16,6 +16,10 @@ app.get('/ticket/*', (req, res) => {
   res.send(database.getTicket(req.url.substring(8)))
 });
 
+app.get('/all_tickets', (req,res) => {
+  res.send(database.getAllTickets())
+})
+
 app.post('/ticket/*', (req, res) => {
   database.updateTicket(req.url.substring(8), req.body)
   res.send("Success")

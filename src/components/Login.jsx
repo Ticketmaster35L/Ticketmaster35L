@@ -123,7 +123,7 @@ function Login() {
                   .then((data) => data.json().then((json) => setId(json.id)),
                         (err) => alert(err))
                   .catch((err) => console.error(err))
-    
+    window.location.reload()
     /*
     if(userTree.contains(values.username)){
       if(userTree.find(values.username).pass === values.password){
