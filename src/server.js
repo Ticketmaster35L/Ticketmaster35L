@@ -21,7 +21,7 @@ app.get('/ticket/*', (req, res) => {
 
 app.post('/ticket/*', (req, res) => {
   database.updateTicket(req.url.substring(8), req.body)
-  res.send(req.body)
+  res.send({ id: req.url.substring(8) })
 });
 
 app.get('/all_tickets', (req, res) => {

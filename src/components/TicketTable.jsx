@@ -16,7 +16,6 @@ function TicketTable() {
         /*I'll let you figure out how to handle this, but data here is a dictionairy with every id of the ticket
         as keys and the ticket object as values.Proccess and add to the table as you need!*/
         setDataSource(data.tickets)
-        console.log(dataSource)
         setFetched(true)
       })
       .catch((error) => {
@@ -27,11 +26,9 @@ function TicketTable() {
   const [searchedTicket, setSearchedTicket] = useState("")
   const [searchCondition, setSearchCondition] = useState("name")
 
-
   const selectSearch = (
     <Select defaultValue="All Columns" onChange={(e) => {
       setSearchCondition(e)
-      //alert(searchCondition)
     }}>
       <Option value="all">All</Option>
       <Option value="ticket">Ticket Name</Option>
@@ -53,19 +50,14 @@ function TicketTable() {
         switch (searchCondition) {
           case "status":
             return String(record.status).toLowerCase().includes(value.toLowerCase())
-            break
           case "ticket":
             return String(record.name).toLowerCase().includes(value.toLowerCase())
-            break
           case "assignedUser":
             return String(record.assignedUser).toLowerCase().includes(value.toLowerCase())
-            break
           case "languages":
             return String(record.languages).toLowerCase().includes(value.toLowerCase())
-            break
           case "dueDate":
             return String(date).toLowerCase().includes(value.toLowerCase())
-            break
           default:
             return String(record.name).toLowerCase().includes(value.toLowerCase()) ||
               String(record.status).toLowerCase().includes(value.toLowerCase()) ||
@@ -99,7 +91,7 @@ function TicketTable() {
       ),
     },
     {
-      title: 'Due Date (MM/DD)',
+      title: 'Due Date',
       dataIndex: 'dueDate',
       sorter: (a, b) => new Date(a.dueDate) - new Date(b.dueDate),
       render: (_, { dueDate }) => (
