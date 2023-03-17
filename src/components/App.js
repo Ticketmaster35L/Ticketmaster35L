@@ -8,15 +8,11 @@ import {
   About,
   Contact,
   Ticket,
-  Posts,
-  Post,
-  Test,
   Login,
   Register,
   Profile,
   CreateTicket,
-  TicketTable,
-  DisplayTicket
+  TicketTable
 } from "../components";
 
 const App = () => {
@@ -24,29 +20,24 @@ const App = () => {
   const [, updateState] = useState({})
 
   return (
-      <div className="App">
-        <Navigation id={id}/>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/table" element={<TicketTable />}/>  
-          <Route path="/ticket" element={<Ticket />}>
-            <Route path="" element={<Posts />} />
-            <Route path=":postSlug" element={<Post />} />
-          </Route>
-          <Route path="/table" element={<TicketTable />} />
-          <Route path="/createticket" element={<CreateTicket />} />
-          <Route path="/test" element={<Test />} />
-          <Route path="tickets" element={<TicketTable />} />
-          <Route path="/DisplayTicket" element={<DisplayTicket />} />
-          <Route path="/login" element={<Login setId={setId}/>} />
-          <Route path="/register" element={<Register setId={setId}/>} />
-          <Route path="/profile" element={<Profile id={id} setId={setId} updateState={updateState}/>} />
-        </Routes>
-        <Footer />
-      </div>
-    );
+    <div className="App">
+      <Navigation id={id} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/table" element={<TicketTable />} />
+        <Route path="/ticket">
+          <Route path=":ticketSlug" element={<Ticket />} />
+        </Route>
+        <Route path="/createticket" element={<CreateTicket />} />
+        <Route path="/login" element={<Login setId={setId} />} />
+        <Route path="/register" element={<Register setId={setId} />} />
+        <Route path="/profile" element={<Profile id={id} setId={setId} updateState={updateState} />} />
+      </Routes>
+      <Footer />
+    </div>
+  );
 }
 
 export default App;

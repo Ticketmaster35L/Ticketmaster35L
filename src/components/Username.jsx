@@ -5,22 +5,20 @@ const Username = (props) => {
 
   if (props.id && props.id !== "") {
     fetch('/api/user/' + props.id, {
-      method: 'GET' })
+      method: 'GET'
+    })
       .then((res) => res.text().then((text) => {
         let json = {}
         try {
           json = JSON.parse(text)
         } catch { }
-        if (json.id)
-        {
+        if (json.id) {
           setName(json.name)
         }
-        else if (json.err)
-        {
+        else if (json.err) {
           console.error('json.err: ' + json.err)
         }
-        else
-        {
+        else {
           console.error('text: ' + text)
           console.error('json: ' + json)
         }
@@ -38,5 +36,5 @@ const Username = (props) => {
     </div>
   )
 }
- 
+
 export default Username;

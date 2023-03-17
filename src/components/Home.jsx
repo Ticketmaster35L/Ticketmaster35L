@@ -15,7 +15,7 @@ function Home() {
           <div className="col-lg-5">
             <h1 className="font-weight-light">Home</h1>
             <p>
-              Welcome to the Ticketmaster Website! We are an online website that provides developers a means to 
+              Welcome to the Ticketmaster Website! We are an online website that provides developers a means to
               organize and resolve internal software queries by manging and streamlining the process of issue resolution.
             </p>
           </div>

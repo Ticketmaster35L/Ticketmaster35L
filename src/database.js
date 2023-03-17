@@ -4,18 +4,18 @@ function initDatabase() {
 
     const dir = './data'
     const path = dir + '/tickets.json'
-    
-    const defaultVal = { }
 
-    if (!fs.existsSync(dir)){
+    const defaultVal = {}
+
+    if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, { recursive: true });
     }
 
     if (!fs.existsSync(path)) {
         fs.writeFileSync(path, JSON.stringify(defaultVal), (err) => {
-                if (err)
-                    console.error(err);
-            }
+            if (err)
+                console.error(err);
+        }
         );
     }
 }
@@ -30,22 +30,19 @@ function createTicket(data) {
     const path = './data/tickets.json'
 
     id = generateId()
-    try
-    {
+    try {
         initDatabase();
         tickets = {}
         text = fs.readFileSync(path)
         tickets = JSON.parse(text)
 
-        while (id in tickets)
-        {
+        while (id in tickets) {
             id = generateId()
         }
 
         updateTicket(id, data);
     }
-    catch(err)
-    {
+    catch (err) {
         console.error(err)
     }
 
@@ -57,8 +54,7 @@ function getTicket(id) {
 
     const path = './data/tickets.json'
 
-    try
-    {
+    try {
         initDatabase();
         tickets = {}
         text = fs.readFileSync(path)
@@ -66,11 +62,10 @@ function getTicket(id) {
         if (id in tickets)
             return tickets[id]
         else
-            return {err: 'Ticket not found'}
+            return { err: 'Ticket not found' }
 
     }
-    catch(err)
-    {
+    catch (err) {
         console.error(err)
     }
 }
@@ -80,8 +75,7 @@ function updateTicket(id, data) {
 
     const path = './data/tickets.json'
 
-    try
-    {
+    try {
         initDatabase();
 
         tickets = {}
@@ -90,8 +84,7 @@ function updateTicket(id, data) {
         tickets[id] = { ...tickets[id], ...data }
         fs.writeFileSync(path, JSON.stringify(tickets))
     }
-    catch(err)
-    {
+    catch (err) {
         console.error(err)
     }
 }
@@ -101,8 +94,7 @@ function deleteTicket(id) {
 
     const path = './data/tickets.json'
 
-    try
-    {
+    try {
         initDatabase();
 
         tickets = {}
@@ -111,19 +103,17 @@ function deleteTicket(id) {
         delete tickets[id]
         fs.writeFileSync(path, JSON.stringify(tickets))
     }
-    catch(err)
-    {
+    catch (err) {
         console.error(err)
     }
 }
 
-function getAllTickets(){
+function getAllTickets() {
     const fs = require('fs')
 
     const path = './data/tickets.json'
 
-    try
-    {
+    try {
         initDatabase();
         tickets = {}
         text = fs.readFileSync(path)
@@ -134,8 +124,7 @@ function getAllTickets(){
         }
         return array
     }
-    catch(err)
-    {
+    catch (err) {
         console.error(err)
     }
 }
