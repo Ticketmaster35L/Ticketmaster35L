@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 
-function Blog() {
+function Ticket() {
   return (
     <div className="home">
       <div class="container">
@@ -12,4 +12,4 @@ function Blog() {
   );
 }
 
-export default Blog;
+export default Ticket;

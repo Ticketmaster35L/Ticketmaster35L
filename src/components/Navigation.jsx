@@ -28,11 +28,11 @@ function Navigation(props) {
                   Contact
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/blog">
-                  Blog
+              {/* <li className="nav-item">
+                <NavLink className="nav-link" to="/ticket">
+                  Ticket
                 </NavLink>
-              </li>
+              </li> */}
               <li className="nav-item">
                 <NavLink className="nav-link" to="/table">
                   Ticket Table
