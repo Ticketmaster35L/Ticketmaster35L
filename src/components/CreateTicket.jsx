@@ -71,7 +71,7 @@ function CreateTicket(props) {
     }
     return (
         <div className="ticketCreator">
-            <div className="container"></div>
+            <div class="container"></div>
             <Form name="TicketFields" onFinish={processJSONString}>
                 <Form.Item label="Ticket Name"
                     name="bugname"
@@ -97,61 +97,61 @@ function CreateTicket(props) {
                 <Form.Item label="Language"
                     name="language">
                     <Select
-                        placeholder="Pick Language"
+                        defaultValue="Pick Language"
                         style={{
                             width: 120,
                         }}
                         options={[
-                            {
-                                value: 'JavaScript',
-                                label: 'JavaScript',
-                            },
-                            {
-                                value: 'Python',
-                                label: 'Python',
-                            },
-                            {
-                                value: 'C++',
-                                label: 'C++',
-                            },
-                            {
-                                value: 'C#',
-                                label: 'C#',
-                            },
-                            {
-                                value: 'Java',
-                                label: 'Java',
-                            },
-                            {
-                                value: 'Bash',
-                                label: 'Bash',
-                            },
+                        {
+                            value: 'JavaScript',
+                            label: 'JavaScript',
+                        },
+                        {
+                            value: 'Python',
+                            label: 'Python',
+                        },
+                        {
+                            value: 'C++',
+                            label: 'C++',
+                        },
+                        {
+                            value: 'C#',
+                            label: 'C#',
+                        },
+                        {
+                            value: 'Java',
+                            label: 'Java',
+                        },
+                        {
+                            value: 'Bash',
+                            label: 'Bash',
+                        },                    
                         ]}
-                    />
+                        />
                 </Form.Item>
                 <Form.Item label="Ticket Status"
                     name="bugstatus">
                     <Select
-                        placeholder="Choose Status"
+                        defaultValue="Choose Status"
                         style={{
                             width: 120,
                         }}
                         options={[
-                            {
-                                value: 'Unfinished',
-                                label: 'Unfinished',
-                            },
-                            {
-                                value: 'In Progress',
-                                label: 'In Progress',
-                            },
-                            {
-                                value: 'Finished',
-                                label: 'Finished',
-                            },
-
+                        {
+                        value: 'Unfinished',
+                        label: 'Unfinished',
+                        },
+                        {
+                        value: 'In Progress',
+                        label: 'In Progress',
+                        },
+                        {
+                        value: 'Finished',
+                        label: 'Finished',
+                        },
+                        
                         ]}
-                    />
+                        />
                 </Form.Item>
                 <Form.Item label="Due Date"
                     name="date">
@@ -167,7 +167,7 @@ function CreateTicket(props) {
                     </Button>
                 </Form.Item>
             </Form>
-            <NavLink className="nav-link" to={-1}>
+            <NavLink className="nav-link" to="/table">
                 Go Back
             </NavLink>
         </div>
