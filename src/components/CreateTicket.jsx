@@ -53,7 +53,7 @@ function CreateTicket(props) {
                 json = JSON.parse(text)
             } catch { }
             if (json.id) {
-                navigate('/table')
+                navigate('/')
             } else if (json.err) {
                 document.getElementById('errmsg').innerText = json.err
                 console.error('json.err: ' + json.err)
@@ -167,7 +167,7 @@ function CreateTicket(props) {
                     </Button>
                 </Form.Item>
             </Form>
-            <NavLink className="nav-link" to="/table">
+            <NavLink className="nav-link" to="/">
                 Go Back
             </NavLink>
         </div>
