@@ -29,11 +29,12 @@ function TicketTable() {
 
 
   const selectSearch = (
-    <Select defaultValue="TicketName" onChange={(e) => {
+    <Select defaultValue="All Columns" onChange={(e) => {
       setSearchCondition(e)
       //alert(searchCondition)
     }}>
-      <Option value="name">TicketName</Option>
+      <Option value="all">All</Option>
+      <Option value="ticket">Ticket Name</Option>
       <Option value="status">Status</Option>
       <Option value="assignedUser">Assigned To</Option>
       <Option value="languages">Language</Option>
@@ -48,9 +49,13 @@ function TicketTable() {
       key: 'ticketName',
       filteredValue: [searchedTicket],
       onFilter: (value, record) => {
+        let date = new Date(record.dueDate).toDateString()
         switch (searchCondition) {
           case "status":
             return String(record.status).toLowerCase().includes(value.toLowerCase())
+            break
+          case "ticket":
+            return String(record.name).toLowerCase().includes(value.toLowerCase())
             break
           case "assignedUser":
             return String(record.assignedUser).toLowerCase().includes(value.toLowerCase())
@@ -59,11 +64,14 @@ function TicketTable() {
             return String(record.languages).toLowerCase().includes(value.toLowerCase())
             break
           case "dueDate":
-            let date = new Date(record.dueDate).toDateString()
             return String(date).toLowerCase().includes(value.toLowerCase())
             break
           default:
-            return String(record.name).toLowerCase().includes(value.toLowerCase())
+            return String(record.name).toLowerCase().includes(value.toLowerCase()) ||
+              String(record.status).toLowerCase().includes(value.toLowerCase()) ||
+              String(record.assignedUser).toLowerCase().includes(value.toLowerCase()) ||
+              String(record.languages).toLowerCase().includes(value.toLowerCase()) ||
+              String(date).toLowerCase().includes(value.toLowerCase())
         }
       }
     },
