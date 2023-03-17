@@ -1,20 +1,40 @@
-# ticketmaster
-This is a bug tracker/ticketmaster system
+# TicketMaster Bug Tracker React App
+Welcome to the TicketMaster Bug Tracker React App! This is a simple bug tracking application built with Node.js and React and designed to help you keep track of bugs in your project.
 
-### To start:
-1. Clone repository
-2. Run `npm install`
-4. Run `npm run server` to start the backend
-4. Run `npm start` to start the frontend
+## Getting Started
+To get started with the TicketMaster Bug Tracker React App, you'll first need to clone this repository to your local machine:
 
-### Commit and Pull Request Rules
-1. No direct Commits to main
-2. Any potential pull request must first be tested with up to date main branch code-make sure to update!
-3. Given two pull requests, the second branch must be updated with the first pull request code and work before approval 
-4. Link the issue you're solving in the pull request description
-5. Upon sending a pull request, the code must be approved by 3 other team members
+```bash
+git clone https://github.com/Ticketmaster35L/Ticketmaster35L.git
+```
+Once you've cloned the repository, you can install the dependencies by running the following command in the project directory:
 
-#### Team Members:
+```bash
+npm install
+```
+After the dependencies have been installed, you can start the backend by running:
+
+```bash
+npm run server
+```
+This will start the backend server that deals with file manipulation and HTTP requests.
+To view the frontend, you need to run:
+
+```bash
+npm start
+```
+This will start the development server and launch the application in your default browser at http://localhost:3000.
+
+## Features
+The Ticketmaster provides a simple interface for creating, editing, and tracking bugs in your project. Some of the key features include:
+
+- Create and track bugs with a variety of details, including title, description, status, and more.
+- Assign bugs to specific team members for resolution.
+- User login to ensure that only people who have an account can access the data.
+- Filter and sort bugs by various criteria, including status, due date, and assignee.
+- Mark bugs as resolved or reopen them if needed.
+
+## Team Members:
 - Aryan Janolkar
 - Nate Carman
 - Brian Yang
