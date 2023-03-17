@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Form, Table, Tag, Select, Input } from 'antd';
+import { Form, Table, Tag, Select, Input} from 'antd';
 import { NavLink, useNavigate } from "react-router-dom";
 
 function TicketTable() {
+  const {Option} = Select
   const [dataSource, setDataSource] = useState([])
   const [fetched, setFetched] = useState(false)
   const navigate = useNavigate()
@@ -24,7 +25,21 @@ function TicketTable() {
   }
 
   const [searchedTicket, setSearchedTicket] = useState("")
+  const [searchCondition, setSearchCondition] = useState("name")
 
+
+  const selectSearch = (
+    <Select defaultValue="TicketName" onChange={(e) => {
+      setSearchCondition(e)
+      //alert(searchCondition)
+    }}>
+      <Option value="name">TicketName</Option>
+      <Option value="status">Status</Option>
+      <Option value="assignedUser">Assigned To</Option>
+      <Option value="languages">Language</Option>
+      <Option value="dueDate">Due Date</Option>
+    </Select>
+  );
 
   const columns = [
     {
@@ -33,7 +48,23 @@ function TicketTable() {
       key: 'ticketName',
       filteredValue: [searchedTicket],
       onFilter: (value, record) => {
-        return String(record.name).toLowerCase().includes(value.toLowerCase())
+        switch(searchCondition){
+          case "status":
+            return String(record.status).toLowerCase().includes(value.toLowerCase())
+            break
+          case "assignedUser":
+            return String(record.assignedUser).toLowerCase().includes(value.toLowerCase())
+            break
+          case "languages":
+            return String(record.languages).toLowerCase().includes(value.toLowerCase())
+            break
+          case "dueDate":
+            let date = new Date(record.dueDate).toDateString()
+            return String(date).toLowerCase().includes(value.toLowerCase())
+            break
+          default:
+            return String(record.name).toLowerCase().includes(value.toLowerCase())
+        }
       }
     },
     {
@@ -82,11 +113,9 @@ function TicketTable() {
       <br />
       <div className='postTable'>
         <Form name="basic">
-          <Input.Search
-          placeholder='Search'
-            onSearch={(value) => {
-              setSearchedTicket(value)
-            }}
+          <Input
+            placeholder='Search'
+            addonAfter={selectSearch}
             onChange={(e) => {
               setSearchedTicket(e.target.value)
             }}
