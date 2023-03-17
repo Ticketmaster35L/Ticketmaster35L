@@ -16,7 +16,6 @@ function TicketTable() {
         /*I'll let you figure out how to handle this, but data here is a dictionairy with every id of the ticket
         as keys and the ticket object as values.Proccess and add to the table as you need!*/
         setDataSource(data.tickets)
-        console.log(dataSource)
         setFetched(true)
       })
       .catch((error) => {
@@ -27,12 +26,12 @@ function TicketTable() {
   const [searchedTicket, setSearchedTicket] = useState("")
   const [searchCondition, setSearchCondition] = useState("name")
 
-
   const selectSearch = (
-    <Select defaultValue="TicketName" onChange={(e) => {
+    <Select defaultValue="All Columns" onChange={(e) => {
       setSearchCondition(e)
     }}>
-      <Option value="name">Ticket Name</Option>
+      <Option value="all">All</Option>
+      <Option value="ticket">Ticket Name</Option>
       <Option value="status">Status</Option>
       <Option value="assignedUser">Assigned To</Option>
       <Option value="languages">Language</Option>
@@ -47,18 +46,24 @@ function TicketTable() {
       key: 'ticketName',
       filteredValue: [searchedTicket],
       onFilter: (value, record) => {
+        let date = new Date(record.dueDate).toDateString()
         switch (searchCondition) {
           case "status":
             return String(record.status).toLowerCase().includes(value.toLowerCase())
+          case "ticket":
+            return String(record.name).toLowerCase().includes(value.toLowerCase())
           case "assignedUser":
             return String(record.assignedUser).toLowerCase().includes(value.toLowerCase())
           case "languages":
             return String(record.languages).toLowerCase().includes(value.toLowerCase())
           case "dueDate":
-            let date = new Date(record.dueDate).toDateString()
             return String(date).toLowerCase().includes(value.toLowerCase())
           default:
-            return String(record.name).toLowerCase().includes(value.toLowerCase())
+            return String(record.name).toLowerCase().includes(value.toLowerCase()) ||
+              String(record.status).toLowerCase().includes(value.toLowerCase()) ||
+              String(record.assignedUser).toLowerCase().includes(value.toLowerCase()) ||
+              String(record.languages).toLowerCase().includes(value.toLowerCase()) ||
+              String(date).toLowerCase().includes(value.toLowerCase())
         }
       }
     },
