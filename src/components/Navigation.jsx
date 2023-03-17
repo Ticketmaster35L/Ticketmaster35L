@@ -25,11 +25,13 @@ function Navigation(props) {
                 </NavLink>
               </li>
               </>}
+              {props.id && props.id !== "" ? <>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/table">
-                  Ticket Table
+                <NavLink className="nav-link" to="/">
+                  Table
                 </NavLink>
               </li>
+              </> : <></>}
               <li className="nav-item">
                 <NavLink className="nav-link" to={props.id && props.id !== "" ? "/profile" : "/login"}>
                   <b><Username id={props.id} /></b>
