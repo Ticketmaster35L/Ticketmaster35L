@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Form, Table, Tag, Select, Input} from 'antd';
+import { Form, Table, Tag, Select, Input } from 'antd';
 import { NavLink, useNavigate } from "react-router-dom";
 
 function TicketTable() {
-  const {Option} = Select
+  const { Option } = Select
   const [dataSource, setDataSource] = useState([])
   const [fetched, setFetched] = useState(false)
   const navigate = useNavigate()
@@ -50,7 +50,7 @@ function TicketTable() {
       filteredValue: [searchedTicket],
       onFilter: (value, record) => {
         let date = new Date(record.dueDate).toDateString()
-        switch(searchCondition){
+        switch (searchCondition) {
           case "status":
             return String(record.status).toLowerCase().includes(value.toLowerCase())
             break
@@ -67,11 +67,11 @@ function TicketTable() {
             return String(date).toLowerCase().includes(value.toLowerCase())
             break
           default:
-            return String(record.name).toLowerCase().includes(value.toLowerCase()) || 
-            String(record.status).toLowerCase().includes(value.toLowerCase()) ||
-            String(record.assignedUser).toLowerCase().includes(value.toLowerCase()) ||
-            String(record.languages).toLowerCase().includes(value.toLowerCase()) ||
-            String(date).toLowerCase().includes(value.toLowerCase())
+            return String(record.name).toLowerCase().includes(value.toLowerCase()) ||
+              String(record.status).toLowerCase().includes(value.toLowerCase()) ||
+              String(record.assignedUser).toLowerCase().includes(value.toLowerCase()) ||
+              String(record.languages).toLowerCase().includes(value.toLowerCase()) ||
+              String(date).toLowerCase().includes(value.toLowerCase())
         }
       }
     },
