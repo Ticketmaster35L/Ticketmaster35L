@@ -54,7 +54,7 @@ function TicketTable() {
     {
       title: 'Due Date (MM/DD)',
       dataIndex: 'dueDate',
-      sorter: (a, b) => a.dueDate - b.dueDate,
+      sorter: (a, b) => new Date(a.dueDate) - new Date(b.dueDate),
       render: (_, { dueDate }) => (
       <>
         {new Date(dueDate).toDateString()}
