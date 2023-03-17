@@ -25,7 +25,6 @@ const App = () => {
       <Routes>
         <Route path="/" element={id && id !== "" ? <TicketTable /> : <Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/table" element={id && id !== "" ? <TicketTable /> : <NoPermission />} />
         <Route path="/ticket">
           <Route path=":ticketSlug" element={id && id !== "" ? <Ticket /> : <NoPermission />} />
         </Route>
