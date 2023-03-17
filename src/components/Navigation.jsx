@@ -28,7 +28,7 @@ function Navigation(props) {
               {props.id && props.id !== "" ? <>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/">
-                  Ticket Table
+                  Table
                 </NavLink>
               </li>
               </> : <></>}
