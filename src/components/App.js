@@ -6,13 +6,13 @@ import {
   Footer,
   Home,
   About,
-  Contact,
   Ticket,
   Login,
   Register,
   Profile,
   CreateTicket,
-  TicketTable
+  TicketTable,
+  NoPermission
 } from "../components";
 
 const App = () => {
@@ -23,17 +23,16 @@ const App = () => {
     <div className="App">
       <Navigation id={id} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={id && id !== "" ? <TicketTable /> : <Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/table" element={<TicketTable />} />
+        <Route path="/table" element={id && id !== "" ? <TicketTable /> : <NoPermission />} />
         <Route path="/ticket">
-          <Route path=":ticketSlug" element={<Ticket />} />
+          <Route path=":ticketSlug" element={id && id !== "" ? <Ticket /> : <NoPermission />} />
         </Route>
-        <Route path="/createticket" element={<CreateTicket />} />
+        <Route path="/createticket" element={id && id !== "" ? <CreateTicket /> : <NoPermission />} />
         <Route path="/login" element={<Login setId={setId} />} />
         <Route path="/register" element={<Register setId={setId} />} />
-        <Route path="/profile" element={<Profile id={id} setId={setId} updateState={updateState} />} />
+        <Route path="/profile" element={id && id !== "" ? <Profile id={id} setId={setId} updateState={updateState} /> : <NoPermission />} />
       </Routes>
       <Footer />
     </div>

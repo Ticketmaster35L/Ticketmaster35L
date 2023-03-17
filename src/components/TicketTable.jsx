@@ -31,9 +31,8 @@ function TicketTable() {
   const selectSearch = (
     <Select defaultValue="TicketName" onChange={(e) => {
       setSearchCondition(e)
-      //alert(searchCondition)
     }}>
-      <Option value="name">TicketName</Option>
+      <Option value="name">Ticket Name</Option>
       <Option value="status">Status</Option>
       <Option value="assignedUser">Assigned To</Option>
       <Option value="languages">Language</Option>
@@ -51,17 +50,13 @@ function TicketTable() {
         switch (searchCondition) {
           case "status":
             return String(record.status).toLowerCase().includes(value.toLowerCase())
-            break
           case "assignedUser":
             return String(record.assignedUser).toLowerCase().includes(value.toLowerCase())
-            break
           case "languages":
             return String(record.languages).toLowerCase().includes(value.toLowerCase())
-            break
           case "dueDate":
             let date = new Date(record.dueDate).toDateString()
             return String(date).toLowerCase().includes(value.toLowerCase())
-            break
           default:
             return String(record.name).toLowerCase().includes(value.toLowerCase())
         }
@@ -91,7 +86,7 @@ function TicketTable() {
       ),
     },
     {
-      title: 'Due Date (MM/DD)',
+      title: 'Due Date',
       dataIndex: 'dueDate',
       sorter: (a, b) => new Date(a.dueDate) - new Date(b.dueDate),
       render: (_, { dueDate }) => (
