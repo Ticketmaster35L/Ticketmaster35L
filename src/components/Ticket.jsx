@@ -3,10 +3,11 @@ import { useParams } from "react-router";
 import { useState } from 'react'
 import { Input, Button, Select, DatePicker } from 'antd';
 import { Descriptions } from 'antd';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import dayjs from 'dayjs';
 
 function Ticket() {
+  const navigate = useNavigate()
 
   let { ticketSlug } = useParams();
   const [ticketName, setTicketName] = useState("")
@@ -19,7 +20,6 @@ function Ticket() {
 
   useEffect(() => {
     // Fetch post using the postSlug
-    console.log("refreshing")
     fetch('/api/ticket/' + ticketSlug).then((response) => response.json())
       .then((ticket) => {
         setTicketName(ticket.name)
@@ -29,16 +29,16 @@ function Ticket() {
         setTicketAssignedDate(dayjs(ticket.assignedDate))
         setTicketDescription(ticket.description)
         setTicketLanguage(ticket.languages)
-        console.log(ticket)
       })
 
   }, [ticketSlug]);
 
 
   function Submission() {
+
     let data = {
-      //EVERY FIELD MUST BE IN HERE
-      "name": ticketName,
+      // EVERY FIELD is IN HERE
+      name: ticketName,
       status: ticketStatus,
       assignedUser: ticketAssignedUser,
       dueDate: new Date(ticketDueDate).toISOString(),
@@ -46,8 +46,7 @@ function Ticket() {
       description: ticketDescription,
       languages: ticketLanguage
     };
-    //SET EVERY TICKET FIELD'S STATE HERE
-    //console.log(ticket_status)
+    // we SET EVERY TICKET FIELD'S STATE HERE
     fetch('/api/ticket/' + ticketSlug, {
       method: "POST",
       headers: {
@@ -55,20 +54,32 @@ function Ticket() {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
-    }
-
-    )//.then((data) => alert(data.json()))
-
-    //alert(event.target.value)
+    }).then((data) => data.text().then((text) => {
+      let json = {}
+      try {
+        json = JSON.parse(text)
+      } catch { }
+      if (json.id) {
+        navigate('/table')
+      } else if (json.err) {
+        console.error('json.err: ' + json.err)
+      } else {
+        console.error('text: ' + text)
+        console.error('json: ' + json)
+      }
+    }),
+      (err) => alert(err))
+      .catch((err) => {
+        console.error('catch: ' + err)
+      })
   }
 
   const { TextArea } = Input;
   return (
-
     <div className="home">
-      <div class="container">
+      <div className="container">
         <div className="ticketDescriptor">
-          <div class="container"></div>
+          <div className="container"></div>
           <Descriptions title={ticketSlug} bordered>
             <Descriptions.Item label="Ticket Name" span={2}><Input name="ticket_name" type="text" value={ticketName} onChange={e => { setTicketName(e.target.value) }} bordered={false} /></Descriptions.Item>
             <Descriptions.Item label="Assigned User" span={1}><Input name="Assigned User" type="text" value={ticketAssignedUser} onChange={e => { setTicketAssignedUser(e.target.value) }} bordered={false} /></Descriptions.Item>

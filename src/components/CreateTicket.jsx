@@ -53,7 +53,7 @@ function CreateTicket(props) {
                 json = JSON.parse(text)
             } catch { }
             if (json.id) {
-                navigate('/ticket/' + json.id)
+                navigate('/table')
             } else if (json.err) {
                 document.getElementById('errmsg').innerText = json.err
                 console.error('json.err: ' + json.err)

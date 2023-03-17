@@ -12,6 +12,7 @@ function Navigation(props) {
           </NavLink>
           <div>
             <ul className="navbar-nav ml-auto">
+              {props.id && props.id !== "" ? <></> : <>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/">
                   Home
@@ -23,16 +24,7 @@ function Navigation(props) {
                   About
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/contact">
-                  Contact
-                </NavLink>
-              </li>
-              {/* <li className="nav-item">
-                <NavLink className="nav-link" to="/ticket">
-                  Ticket
-                </NavLink>
-              </li> */}
+              </>}
               <li className="nav-item">
                 <NavLink className="nav-link" to="/table">
                   Ticket Table
