@@ -80,7 +80,7 @@ function Ticket() {
       <div className="container">
         <div className="ticketDescriptor">
           <div className="container"></div>
-          <Descriptions title={ticketSlug} bordered>
+          <Descriptions bordered>
             <Descriptions.Item label="Ticket Name" span={2}><Input name="ticket_name" type="text" value={ticketName} onChange={e => { setTicketName(e.target.value) }} bordered={false} /></Descriptions.Item>
             <Descriptions.Item label="Assigned User" span={1}><Input name="Assigned User" type="text" value={ticketAssignedUser} onChange={e => { setTicketAssignedUser(e.target.value) }} bordered={false} /></Descriptions.Item>
             <Descriptions.Item label="Ticket Status" span={2}>
