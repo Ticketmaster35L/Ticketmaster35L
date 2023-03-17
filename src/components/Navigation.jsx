@@ -8,7 +8,7 @@ function Navigation(props) {
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <div className="container">
           <NavLink className="navbar-brand" to="/">
-            TicketMaster
+            Ticketmaster
           </NavLink>
           <div>
             <ul className="navbar-nav ml-auto">
