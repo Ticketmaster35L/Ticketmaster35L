@@ -60,7 +60,7 @@ function Ticket() {
         json = JSON.parse(text)
       } catch { }
       if (json.id) {
-        navigate('/table')
+        navigate('/')
       } else if (json.err) {
         console.error('json.err: ' + json.err)
       } else {
