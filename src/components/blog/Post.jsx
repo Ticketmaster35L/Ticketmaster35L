@@ -78,8 +78,8 @@ function Post() {
         <div className="ticketDescriptor">
           <div class="container"></div>
           <Descriptions title={postSlug} bordered>
-            <Descriptions.Item label="Ticket Name" span={2}><Input name="ticket_name" type="text" value={ticket_name} onChange={e => {setTicket_name(e.target.value)}} bordered={false} /></Descriptions.Item>
-            <Descriptions.Item label="Assigned User" span={1}><Input name="Assigned User" type="text" value={ticket_assignedUser} onChange={e => {setTicket_assignedUser(e.target.value)}} bordered={false} /></Descriptions.Item>
+            <Descriptions.Item label="Ticket Name" span={2}><Input name="ticket_name" type="text" value={ticket_name} onChange={e => { setTicket_name(e.target.value) }} bordered={false} /></Descriptions.Item>
+            <Descriptions.Item label="Assigned User" span={1}><Input name="Assigned User" type="text" value={ticket_assignedUser} onChange={e => { setTicket_assignedUser(e.target.value) }} bordered={false} /></Descriptions.Item>
             <Descriptions.Item label="Ticket Status" span={2}>
 
               <Select value={ticket_status} options={[
@@ -96,51 +96,53 @@ function Post() {
                   label: 'Finished',
                 },
               ]}
-                style={{ width: '100%' }} name="ticket_status" onChange={e => {setTicket_status(e)}} bordered={false} showArrow={false} />
+                style={{ width: '100%' }} name="ticket_status" onChange={e => { setTicket_status(e) }} bordered={false} showArrow={false} />
 
             </Descriptions.Item>
             <Descriptions.Item label="Language" span={1} >
 
               <Select value={ticket_language} options={[
-                        {
-                            value: 'JavaScript',
-                            label: 'JavaScript',
-                        },
-                        {
-                            value: 'Python',
-                            label: 'Python',
-                        },
-                        {
-                            value: 'C++',
-                            label: 'C++',
-                        },
-                        {
-                            value: 'C#',
-                            label: 'C#',
-                        },
-                        {
-                            value: 'Java',
-                            label: 'Java',
-                        },
-                        {
-                            value: 'Bash',
-                            label: 'Bash',
-                        },                    
-                        ]}
-                style={{ width: '100%' }} name="ticket_language" onChange={e => {setTicket_Language(e)}} bordered={false} showArrow={false} />
+                {
+                  value: 'JavaScript',
+                  label: 'JavaScript',
+                },
+                {
+                  value: 'Python',
+                  label: 'Python',
+                },
+                {
+                  value: 'C++',
+                  label: 'C++',
+                },
+                {
+                  value: 'C#',
+                  label: 'C#',
+                },
+                {
+                  value: 'Java',
+                  label: 'Java',
+                },
+                {
+                  value: 'Bash',
+                  label: 'Bash',
+                },
+              ]}
+                style={{ width: '100%' }} name="ticket_language" onChange={e => { setTicket_Language(e) }} bordered={false} showArrow={false} />
 
             </Descriptions.Item>
-            <Descriptions.Item label="Due Date" span={2}><DatePicker value={ticket_dueDate} onChange={e => {setTicket_dueDate(e) 
-            alert(new Date(e).toISOString())}} bordered={false} /></Descriptions.Item>
+            <Descriptions.Item label="Due Date" span={2}><DatePicker value={ticket_dueDate} onChange={e => {
+              setTicket_dueDate(e)
+              alert(new Date(e).toISOString())
+            }} bordered={false} /></Descriptions.Item>
             <Descriptions.Item label="Assigned Date" span={1}><DatePicker value={ticket_assignedDate} disabled /></Descriptions.Item>
             <Descriptions.Item label="Description" span={3}>
-            <TextArea bordered={false} name="Comment Field" rows={6} cols={100} value={ticket_description} onChange={e => {setTicket_Description(e.target.value)}}/>
+              <TextArea bordered={false} name="Comment Field" rows={6} cols={100} value={ticket_description} onChange={e => { setTicket_Description(e.target.value) }} />
             </Descriptions.Item>
           </Descriptions>
-          
-              <Button type="primary" htmlType="submit" onClick={e=>{Submission()}}>
-                Save Data
-              </Button>
+
+          <Button type="primary" htmlType="submit" onClick={e => { Submission() }}>
+            Save Data
+          </Button>
           <NavLink className="nav-link" to={-1}>
             Go Back
           </NavLink>

@@ -4,18 +4,18 @@ function initDatabase() {
 
     const dir = './data'
     const path = dir + '/users.json'
-    
-    const defaultVal = { }
 
-    if (!fs.existsSync(dir)){
+    const defaultVal = {}
+
+    if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, { recursive: true });
     }
 
     if (!fs.existsSync(path)) {
         fs.writeFileSync(path, JSON.stringify(defaultVal), (err) => {
-                if (err)
-                    console.error(err);
-            }
+            if (err)
+                console.error(err);
+        }
         );
     }
 }
@@ -30,22 +30,19 @@ function createUser(data) {
     const path = './data/users.json'
 
     id = generateId()
-    try
-    {
+    try {
         initDatabase();
         users = {}
         text = fs.readFileSync(path)
         users = JSON.parse(text)
 
-        while (id in users)
-        {
+        while (id in users) {
             id = generateId()
         }
 
         updateUser(id, data);
     }
-    catch(err)
-    {
+    catch (err) {
         console.error(err)
     }
 
@@ -57,20 +54,18 @@ function getUser(id) {
 
     const path = './data/users.json'
 
-    try
-    {
+    try {
         initDatabase();
         users = {}
         text = fs.readFileSync(path)
         users = JSON.parse(text)
         if (id in users)
-            return { ...users[id], id: id}
+            return { ...users[id], id: id }
         else
-            return {err: 'User not found'}
+            return { err: 'User not found' }
 
     }
-    catch(err)
-    {
+    catch (err) {
         console.error(err)
     }
 }
@@ -80,21 +75,19 @@ function getUserByEmail(email) {
 
     const path = './data/users.json'
 
-    try
-    {
+    try {
         initDatabase();
         users = {}
         text = fs.readFileSync(path)
         users = JSON.parse(text)
         for (user in users) {
             if (users[user].email == email) {
-                return { ...users[user], id: user}
+                return { ...users[user], id: user }
             }
         }
-        return {err: 'User not found'}
+        return { err: 'User not found' }
     }
-    catch(err)
-    {
+    catch (err) {
         console.error(err)
     }
 }
@@ -104,8 +97,7 @@ function updateUser(id, data) {
 
     const path = './data/users.json'
 
-    try
-    {
+    try {
         initDatabase();
 
         users = {}
@@ -114,8 +106,7 @@ function updateUser(id, data) {
         users[id] = { ...users[id], ...data }
         fs.writeFileSync(path, JSON.stringify(users))
     }
-    catch(err)
-    {
+    catch (err) {
         console.error(err)
     }
 }
@@ -125,8 +116,7 @@ function deleteUser(id) {
 
     const path = './data/users.json'
 
-    try
-    {
+    try {
         initDatabase();
 
         users = {}
@@ -135,19 +125,17 @@ function deleteUser(id) {
         delete users[id]
         fs.writeFileSync(path, JSON.stringify(users))
     }
-    catch(err)
-    {
+    catch (err) {
         console.error(err)
     }
 }
 
-function getAllUsers(){
+function getAllUsers() {
     const fs = require('fs')
 
     const path = './data/users.json'
 
-    try
-    {
+    try {
         initDatabase();
         users = {}
         text = fs.readFileSync(path)
@@ -158,8 +146,7 @@ function getAllUsers(){
         }
         return array
     }
-    catch(err)
-    {
+    catch (err) {
         console.error(err)
     }
 }

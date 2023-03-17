@@ -102,32 +102,32 @@ function CreateTicket(props) {
                             width: 120,
                         }}
                         options={[
-                        {
-                            value: 'JavaScript',
-                            label: 'JavaScript',
-                        },
-                        {
-                            value: 'Python',
-                            label: 'Python',
-                        },
-                        {
-                            value: 'C++',
-                            label: 'C++',
-                        },
-                        {
-                            value: 'C#',
-                            label: 'C#',
-                        },
-                        {
-                            value: 'Java',
-                            label: 'Java',
-                        },
-                        {
-                            value: 'Bash',
-                            label: 'Bash',
-                        },                    
+                            {
+                                value: 'JavaScript',
+                                label: 'JavaScript',
+                            },
+                            {
+                                value: 'Python',
+                                label: 'Python',
+                            },
+                            {
+                                value: 'C++',
+                                label: 'C++',
+                            },
+                            {
+                                value: 'C#',
+                                label: 'C#',
+                            },
+                            {
+                                value: 'Java',
+                                label: 'Java',
+                            },
+                            {
+                                value: 'Bash',
+                                label: 'Bash',
+                            },
                         ]}
-                        />
+                    />
                 </Form.Item>
                 <Form.Item label="Ticket Status"
                     name="bugstatus">
@@ -137,21 +137,21 @@ function CreateTicket(props) {
                             width: 120,
                         }}
                         options={[
-                        {
-                        value: 'Unfinished',
-                        label: 'Unfinished',
-                        },
-                        {
-                        value: 'In Progress',
-                        label: 'In Progress',
-                        },
-                        {
-                        value: 'Finished',
-                        label: 'Finished',
-                        },
-                        
+                            {
+                                value: 'Unfinished',
+                                label: 'Unfinished',
+                            },
+                            {
+                                value: 'In Progress',
+                                label: 'In Progress',
+                            },
+                            {
+                                value: 'Finished',
+                                label: 'Finished',
+                            },
+
                         ]}
-                        />
+                    />
                 </Form.Item>
                 <Form.Item label="Due Date"
                     name="date">

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Form, Table, Tag, Select, Input} from 'antd';
+import { Form, Table, Tag, Select, Input } from 'antd';
 import { NavLink, useNavigate } from "react-router-dom";
 
 function TicketTable() {
-  const {Option} = Select
+  const { Option } = Select
   const [dataSource, setDataSource] = useState([])
   const [fetched, setFetched] = useState(false)
   const navigate = useNavigate()
@@ -48,7 +48,7 @@ function TicketTable() {
       key: 'ticketName',
       filteredValue: [searchedTicket],
       onFilter: (value, record) => {
-        switch(searchCondition){
+        switch (searchCondition) {
           case "status":
             return String(record.status).toLowerCase().includes(value.toLowerCase())
             break
