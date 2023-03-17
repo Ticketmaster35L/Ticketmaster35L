@@ -17,6 +17,7 @@ function TicketTable() {
         as keys and the ticket object as values.Proccess and add to the table as you need!*/
         setDataSource(data.tickets)
         setFetched(true)
+        console.log(data.tickets)
       })
       .catch((error) => {
         alert(error);

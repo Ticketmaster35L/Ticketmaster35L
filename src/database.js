@@ -51,6 +51,7 @@ function createTicket(data) {
 
 function getTicket(id) {
     const fs = require('fs')
+    const logindata = require('./logindata.js')
 
     const path = './data/tickets.json'
 
@@ -59,8 +60,12 @@ function getTicket(id) {
         tickets = {}
         text = fs.readFileSync(path)
         tickets = JSON.parse(text)
-        if (id in tickets)
+        if (id in tickets) {
+            let user = tickets[id]?.assignedUser
+            if (user)
+                tickets[id].assignedUser = logindata.getUser(user)?.name || user
             return tickets[id]
+        }
         else
             return { err: 'Ticket not found' }
 
@@ -110,6 +115,7 @@ function deleteTicket(id) {
 
 function getAllTickets() {
     const fs = require('fs')
+    const logindata = require('./logindata.js')
 
     const path = './data/tickets.json'
 
@@ -120,6 +126,9 @@ function getAllTickets() {
         tickets = JSON.parse(text)
         array = []
         for (ticket in tickets) {
+            let user = tickets[ticket]?.assignedUser
+            if (user)
+                tickets[ticket].assignedUser = logindata.getUser(user)?.name || user
             array.push({ ...tickets[ticket], key: ticket })
         }
         return array
